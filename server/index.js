@@ -30,8 +30,6 @@ app.use(passport.session());
 
 connectDB().then(() => {
 
-
-
   app.use('/auth', authRoutes);
   app.get('/', (req, res) => {
     res.json({ 

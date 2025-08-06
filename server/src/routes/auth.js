@@ -22,6 +22,7 @@ router.get('/google/callback',
       { expiresIn: '1h' }
     );
     
+    // Return JSON response instead of redirecting
     res.json({ 
       success: true,
       token,
@@ -39,6 +40,23 @@ router.get('/logout', (req, res) => {
   req.logout(() => {
     res.json({ success: true, message: 'Logged out successfully' });
   });
+});
+
+// Add a route to get current user
+router.get('/me', (req, res) => {
+  if (req.user) {
+    res.json({
+      success: true,
+      user: {
+        id: req.user.id,
+        displayName: req.user.displayName,
+        email: req.user.email,
+        profilePicture: req.user.profilePicture
+      }
+    });
+  } else {
+    res.status(401).json({ success: false, message: 'Not authenticated' });
+  }
 });
 
 module.exports = router;
