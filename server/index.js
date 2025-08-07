@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
 const { connectDB } = require('./src/db/db');
 require('dotenv').config();
 const authRoutes = require('./src/routes/auth');
@@ -11,9 +12,13 @@ require('./src/config/passport');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use(session({
   secret: process.env.JWT_SECRET || 'your_session_secret',

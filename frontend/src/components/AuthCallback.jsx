@@ -1,37 +1,36 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 
+// Configure axios to send credentials
+axios.defaults.withCredentials = true;
+
 const AuthCallback = () => {
   const { handleAuthCallback } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleCallback = async () => {
       try {
-        // Get the response from the server
-        const response = await axios.get('/auth/google/callback', {
-          withCredentials: true
-        });
-
-        if (response.data.success) {
-          // Handle successful authentication
-          handleAuthCallback(response.data);
-          
-          // Redirect to home page
-          window.location.href = '/';
+        // Call handleAuthCallback to process the authentication
+        const isAuthenticated = await handleAuthCallback();
+        
+        // Redirect based on authentication result
+        if (isAuthenticated) {
+          navigate('/dashboard');
         } else {
-          console.error('Authentication failed');
-          window.location.href = '/';
+          navigate('/');
         }
       } catch (error) {
         console.error('Error during authentication callback:', error);
-        window.location.href = '/';
+        navigate('/');
       }
     };
 
     handleCallback();
-  }, [handleAuthCallback]);
+  }, [handleAuthCallback, navigate]);
 
   return (
     <motion.div
@@ -63,4 +62,4 @@ const AuthCallback = () => {
   );
 };
 
-export default AuthCallback; 
+export default AuthCallback;

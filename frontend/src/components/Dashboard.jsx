@@ -1,17 +1,13 @@
 import React from 'react';
-import './App.css'
-import { AuthProvider, useAuth } from './context/AuthContext';
-import DotGrid from './Additives/DotGrid/DotGrid';
-import SpotlightCard from './Additives/SpotlightCard';
+import { useAuth } from '../context/AuthContext';
+import DotGrid from '../Additives/DotGrid/DotGrid';
+import SpotlightCard from '../Additives/SpotlightCard';
 import { motion } from 'framer-motion';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import AuthCallback from './components/AuthCallback';
-import ProtectedRoute from './components/ProtectedRoute';
 
-// Landing page component for guests with login functionality
-const LandingPage = () => {
-  const { loginWithGoogle } = useAuth();
+const Dashboard = () => {
+  const { user, logout } = useAuth();
+
+  console.log(user);
 
   return (
     <motion.div
@@ -93,31 +89,43 @@ const LandingPage = () => {
                   </div>
 
                   <div className="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
-                      <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
+                      <motion.div
+                          className="flex items-center space-x-4"
                           initial={{ opacity: 0, y: -20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3 }}
-                          onClick={loginWithGoogle}
-                              className="
-                                  px-6 py-3 text-lg
-                                  font-semibold
-                                  leading-7
-                                  text-white
-                                  transition-all
-                                  duration-200
-                                  bg-transparent
-                                  border-2 border-gray-200
-                                  rounded-xl
-                                  font-pj
-                                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-100
-                                  hover:bg-gray-200 hover:text-gray-900
-                                  focus:bg-gray-200 focus:text-gray-900
-                              "
+                          transition={{ duration: 0.3, delay: 0.2 }}
                       >
-                          Login with Google
-                      </motion.button>
+                        {user?.profilePicture && (
+                          <motion.img
+                            src={user.profilePicture}
+                            alt={user.displayName}
+                            className="w-8 h-8 rounded-full"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.3, delay: 0.3 }}
+                          />
+                        )}
+                        <motion.span
+                          className="text-lg font-semibold text-white"
+                          whileHover={{ scale: 1.05 }}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3, delay: 0.4 }}
+                        >{user?.displayName}</motion.span>
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={logout}
+                          className="text-lg font-semibold text-white transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-100 focus:ring-offset-2"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3, delay: 0.5 }}
+                        >
+                          Logout
+                        </motion.button>
+                      </motion.div>
                   </div>
               </div>
           </div>
@@ -153,7 +161,7 @@ const LandingPage = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                   >
-                      Made by Developers, for Developers
+                      Welcome back, {user?.displayName || 'User'}!
                   </motion.div>
                   
                   <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.2)">
@@ -163,7 +171,7 @@ const LandingPage = () => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.3 }}
                       >
-                          Quality resources shared by the community
+                          Your Dashboard
                       </motion.h1>
                   </SpotlightCard>
                       
@@ -174,7 +182,7 @@ const LandingPage = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.2 }}
                   >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vehicula massa in enim luctus. Rutrum arcu.
+                      This is your personalized dashboard. Explore your resources and community connections.
                   </motion.p>
 
               </div>
@@ -240,29 +248,4 @@ const LandingPage = () => {
   );
 };
 
-const AppContent = () => {
-  const { isAuthenticated } = useAuth();
-  
-  return (
-    <Routes>
-      <Route path="/auth/callback" element={<AuthCallback />} />
-      <Route path="/dashboard" element={
-        <ProtectedRoute>
-          <Dashboard />
-        </ProtectedRoute>
-      } />
-      <Route path="/" element={isAuthenticated ? <Dashboard /> : <LandingPage />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
-  );
-};
-
-const App = () => {
-  return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
-  );
-};
-
-export default App;
+export default Dashboard;

@@ -14,19 +14,30 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [token, setToken] = useState(localStorage.getItem('token'));
 
   // Configure axios defaults
   axios.defaults.baseURL = 'http://localhost:3000';
+  axios.defaults.withCredentials = true;
+
+  // Check if user is authenticated by calling the backend
+  const checkAuthStatus = async () => {
+    try {
+      const response = await axios.get('/auth/me');
+      if (response.data.success) {
+        setUser(response.data.user);
+      } else {
+        setUser(null);
+      }
+    } catch (error) {
+      console.error('Error checking auth status:', error);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Check if user is already logged in
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      setToken(storedToken);
-      // You can add a function here to validate the token with the server
-    }
-    setLoading(false);
+    checkAuthStatus();
   }, []);
 
   const loginWithGoogle = () => {
@@ -34,36 +45,42 @@ export const AuthProvider = ({ children }) => {
     window.location.href = 'http://localhost:3000/auth/google';
   };
 
-  const logout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem('token');
-    // Call logout endpoint
-    axios.get('/auth/logout');
+  const logout = async () => {
+    try {
+      setUser(null);
+      // Call logout endpoint
+      await axios.get('/auth/logout');
+      // Refresh the page to ensure clean state
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Error during logout:', error);
+      // Still redirect to home page even if logout API fails
+      window.location.href = '/';
+    }
   };
 
-  const handleAuthCallback = async (authData) => {
+  const handleAuthCallback = async () => {
     try {
-      const { token: newToken, user: userData } = authData;
-      setToken(newToken);
-      setUser(userData);
-      localStorage.setItem('token', newToken);
-      
-      // Set axios default header for future requests
-      axios.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+      // Fetch user info from backend
+      const response = await axios.get('/auth/me');
+      if (response.data.success) {
+        setUser(response.data.user);
+      }
+      return response.data.success;
     } catch (error) {
       console.error('Error handling auth callback:', error);
+      setUser(null);
+      return false;
     }
   };
 
   const value = {
     user,
-    token,
     loading,
     loginWithGoogle,
     logout,
     handleAuthCallback,
-    isAuthenticated: !!token
+    isAuthenticated: !!user
   };
 
   return (
@@ -71,4 +88,4 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-}; 
+};
