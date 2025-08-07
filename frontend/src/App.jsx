@@ -182,61 +182,7 @@ const LandingPage = () => {
           </div>
       </motion.section>
 
-      <motion.footer
-          className="bg-gray-800 text-gray-300 py-10 mt-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-      >
-          <div className="flex justify-center items-center">
-              <nav className="flex space-x-8">
-                  <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.4 }}
-                  >
-                      <motion.a
-                          className="text-lg font-medium hover:text-white transition-colors duration-200"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                      >Branding</motion.a>
-                  </motion.div>
-                  <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.5 }}
-                  >
-                      <motion.a
-                          className="text-lg font-medium hover:text-white transition-colors duration-200"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                      >Design</motion.a>
-                  </motion.div>
-                  <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.6 }}
-                  >
-                      <motion.a
-                          className="text-lg font-medium hover:text-white transition-colors duration-200"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                      >Marketing</motion.a>
-                  </motion.div>
-                  <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.7 }}
-                  >
-                      <motion.a
-                          className="text-lg font-medium hover:text-white transition-colors duration-200"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                      >Advertisement</motion.a>
-                  </motion.div>
-              </nav>
-          </div>
-      </motion.footer>
+      
     </motion.div>
   );
 };

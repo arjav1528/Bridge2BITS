@@ -80,9 +80,11 @@ router.get('/me', authenticateToken, (req, res) => {
             interests: user.interests || [],
             branch: user.branch || '',
             year: user.year || '',
-            campus: user.campus || (user.email.includes('@goa.bits-pilani.ac.in') ? 'Goa' : 
-                                   user.email.includes('@pilani.bits-pilani.ac.in') ? 'Pilani' : 
+            campus: user.campus || (user.email.includes('@goa.bits-pilani.ac.in') ? 'Goa' :
+                                   user.email.includes('@pilani.bits-pilani.ac.in') ? 'Pilani' :
                                    user.email.includes('@hyderabad.bits-pilani.ac.in') ? 'Hyderabad' : 'Goa'),
+            city: user.city || '',
+            university: user.university || '',
             studentId: user.studentId || '',
             phoneNumber: user.phoneNumber || '',
             linkedinProfile: user.linkedinProfile || '',
@@ -107,6 +109,8 @@ router.post('/complete-profile', authenticateToken, async (req, res) => {
       branch,
       year,
       campus,
+      city,
+      university,
       studentId,
       phoneNumber,
       linkedinProfile,
@@ -121,6 +125,8 @@ router.post('/complete-profile', authenticateToken, async (req, res) => {
         branch,
         year,
         campus,
+        city,
+        university,
         studentId,
         phoneNumber,
         linkedinProfile,

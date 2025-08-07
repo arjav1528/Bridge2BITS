@@ -14,7 +14,7 @@ const Dashboard = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
     >
-      <header className="relative py-4 md:py-6 mx-4 md:mx-8 lg:mx-12 border-2 border-gray-200 rounded-xl mt-2">
+      <header className="relative py-4 md:py-6 mx-4 md:mx-8 lg:mx-12 rounded-xl mt-2">
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
               <div className="relative flex items-center justify-between">
                   <div className="flex-shrink-0">
@@ -25,7 +25,7 @@ const Dashboard = () => {
                          whileHover={{ scale: 1.05 }}
                          whileTap={{ scale: 0.95 }}
                       >
-                       <p className="text-4xl font-bold text-white transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-100 focus:ring-offset-2"> Brigde2BITS </p>
+                       <p className="text-4xl font-bold text-white transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-100 focus:ring-offset-2 hover:border-none"> Brigde2BITS </p>
                       </motion.a>
                   </div>
 
@@ -144,11 +144,10 @@ const Dashboard = () => {
               <DotGrid
               dotSize={2}
               gap={15}
-              proximity={120}
+              proximity={0}
               shockRadius={250}
               shockStrength={5}
-              resistance={750}
-              returnDuration={1.5}
+              returnDuration={0.5}
               baseColor="#FFFFFF"
               activeColor="#FFFF00"
               />
@@ -189,61 +188,7 @@ const Dashboard = () => {
           </div>
       </motion.section>
 
-      <motion.footer
-          className="bg-gray-800 text-gray-300 py-10 mt-auto"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-      >
-          <div className="flex justify-center items-center">
-              <nav className="flex space-x-8">
-                  <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.4 }}
-                  >
-                      <motion.a
-                          className="text-lg font-medium hover:text-white transition-colors duration-200"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                      >Branding</motion.a>
-                  </motion.div>
-                  <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.5 }}
-                  >
-                      <motion.a
-                          className="text-lg font-medium hover:text-white transition-colors duration-200"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                      >Design</motion.a>
-                  </motion.div>
-                  <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.6 }}
-                  >
-                      <motion.a
-                          className="text-lg font-medium hover:text-white transition-colors duration-200"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                      >Marketing</motion.a>
-                  </motion.div>
-                  <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.7 }}
-                  >
-                      <motion.a
-                          className="text-lg font-medium hover:text-white transition-colors duration-200"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                      >Advertisement</motion.a>
-                  </motion.div>
-              </nav>
-          </div>
-      </motion.footer>
+      
     </motion.div>
   );
 };

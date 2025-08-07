@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Select, SelectItem } from "@heroui/react";
 
 const ProfileCompletion = () => {
   console.log('ProfileCompletion component starting...');
@@ -20,6 +21,8 @@ const ProfileCompletion = () => {
     branch: '',
     year: '',
     campus: '',
+    city: '',
+    university: '',
     studentId: '',
     phoneNumber: '',
     linkedinProfile: '',
@@ -40,17 +43,30 @@ const ProfileCompletion = () => {
 
   const years = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
 
-  const campuses = ['Goa', 'Pilani', 'Hyderabad'];
+  const campuses = [
+    { key: 'Goa', label: 'Goa' },
+    { key: 'Pilani', label: 'Pilani' },
+    { key: 'Hyderabad', label: 'Hyderabad' }
+  ];
+  
+
+
+  const universities = [
+    { key: 'IIT', label: 'Indian Institute of Technology' },
+    { key: 'NIT', label: 'National Institute of Technology' },
+    { key: 'BITS', label: 'Birla Institute of Technology and Science' },
+    { key: 'IISc', label: 'Indian Institute of Science' },
+  ];
 
   useEffect(() => {
-    // Auto-detect campus from email
+    // Auto-detect campus and city from email
     if (user?.email) {
       if (user.email.includes('@goa.bits-pilani.ac.in')) {
-        setFormData(prev => ({ ...prev, campus: 'Goa' }));
+        setFormData(prev => ({ ...prev, campus: 'Goa', city: 'Goa' }));
       } else if (user.email.includes('@pilani.bits-pilani.ac.in')) {
-        setFormData(prev => ({ ...prev, campus: 'Pilani' }));
+        setFormData(prev => ({ ...prev, campus: 'Pilani', city: 'Pilani' }));
       } else if (user.email.includes('@hyderabad.bits-pilani.ac.in')) {
-        setFormData(prev => ({ ...prev, campus: 'Hyderabad' }));
+        setFormData(prev => ({ ...prev, campus: 'Hyderabad', city: 'Hyderabad' }));
       }
     }
     
@@ -63,6 +79,13 @@ const ProfileCompletion = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSelectChange = (name, value) => {
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -449,7 +472,7 @@ const ProfileCompletion = () => {
                     </motion.h2>
                   </div>
 
-                  <motion.div 
+                  <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 gap-6"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -460,18 +483,53 @@ const ProfileCompletion = () => {
                       <label className="block text-sm font-medium text-gray-200 mb-2">
                         Campus
                       </label>
-                      <motion.select
-                        name="campus"
-                        value={formData.campus}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.97 }}
+                      >
+                        <Select
+                          name="campus"
+                          placeholder="Select Campus"
+                          selectedKeys={[formData.campus]}
+                          onSelectionChange={(keys) => {
+                            const selectedCampus = Array.from(keys)[0] || '';
+                            handleSelectChange('campus', selectedCampus);
+                          }}
+                          className="w-full"
+                          classNames={{
+                            trigger: "bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-lg min-h-[56px] transition-all hover:border-gray-500 focus:ring-2 focus:ring-gray-500",
+                            popover: "bg-gray-800 border border-gray-700 rounded-lg shadow-lg",
+                            listbox: "bg-gray-800 p-1",
+                            listboxItem: "text-white hover:bg-gray-700 px-4 py-3 rounded-md transition-colors",
+                            value: "text-white",
+                            indicator: "text-white"
+                          }}
+                          disallowEmptySelection={false}
+                        >
+                          {campuses.map((campus) => (
+                            <SelectItem key={campus.key} value={campus.key}>
+                              {campus.label}
+                            </SelectItem>
+                          ))}
+                        </Select>
+                      </motion.div>
+                    </div>
+
+                    {/* City */}
+                    <div className="form-control">
+                      <label className="block text-sm font-medium text-gray-200 mb-2">
+                        City
+                      </label>
+                      <motion.input
+                        type="text"
+                        name="city"
+                        value={formData.city}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 text-white transition-all"
+                        placeholder="e.g., Mumbai"
                         whileFocus={{ scale: 1.02 }}
-                      >
-                        <option value="" className="bg-gray-800 text-white">Select Campus</option>
-                        {campuses.map(campus => (
-                          <option key={campus} value={campus} className="bg-gray-800 text-white">{campus}</option>
-                        ))}
-                      </motion.select>
+                      />
                     </div>
 
                     {/* Branch */}
@@ -479,18 +537,75 @@ const ProfileCompletion = () => {
                       <label className="block text-sm font-medium text-gray-200 mb-2">
                         Branch
                       </label>
-                      <motion.select
-                        name="branch"
-                        value={formData.branch}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 text-white transition-all"
-                        whileFocus={{ scale: 1.02 }}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.99 }}
                       >
-                        <option value="" className="bg-gray-800 text-white">Select Branch</option>
-                        {branches.map(branch => (
-                          <option key={branch} value={branch} className="bg-gray-800 text-white">{branch}</option>
-                        ))}
-                      </motion.select>
+                        <Select
+                          name="branch"
+                          placeholder="Select Branch"
+                          selectedKeys={[formData.branch]}
+                          onSelectionChange={(keys) => {
+                            const selectedBranch = Array.from(keys)[0] || '';
+                            handleSelectChange('branch', selectedBranch);
+                          }}
+                          className="w-full"
+                          classNames={{
+                            trigger: "bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-lg min-h-[56px] transition-all hover:border-gray-500 focus:ring-2 focus:ring-gray-500",
+                            popover: "bg-gray-800 border border-gray-700 rounded-lg shadow-lg",
+                            listbox: "bg-gray-800 p-1",
+                            listboxItem: "text-white hover:bg-gray-700 px-4 py-3 rounded-md transition-colors",
+                            value: "text-white",
+                            indicator: "text-white"
+                          }}
+                          disallowEmptySelection={false}
+                        >
+                          {branches.map((branch) => (
+                            <SelectItem key={branch} value={branch}>
+                              {branch}
+                            </SelectItem>
+                          ))}
+                        </Select>
+                      </motion.div>
+                    </div>
+
+                    {/* University */}
+                    <div className="form-control">
+                      <label className="block text-sm font-medium text-gray-200 mb-2">
+                        University
+                      </label>
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.01 }}
+                      >
+                        <Select
+                          name="university"
+                          placeholder="Select University"
+                          selectedKeys={[formData.university]}
+                          onSelectionChange={(keys) => {
+                            const selectedUniversity = Array.from(keys)[0] || '';
+                            handleSelectChange('university', selectedUniversity);
+                          }}
+                          className="w-full"
+                          classNames={{
+                            trigger: "bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-lg min-h-[56px] transition-all hover:border-gray-500 focus:ring-2 focus:ring-gray-500",
+                            popover: "bg-gray-800 border border-gray-700 rounded-lg shadow-lg",
+                            listbox: "bg-gray-800 p-1",
+                            listboxItem: "text-white hover:bg-gray-700 px-4 py-3 rounded-md transition-colors",
+                            value: "text-white",
+                            indicator: "text-white"
+                          }}
+                          disallowEmptySelection={false}
+                        >
+                          {universities.map((university) => (
+                            <SelectItem key={university.key} value={university.key}>
+                              {university.label}
+                            </SelectItem>
+                          ))}
+                        </Select>
+                      </motion.div>
                     </div>
 
                     {/* Year */}
@@ -498,18 +613,37 @@ const ProfileCompletion = () => {
                       <label className="block text-sm font-medium text-gray-200 mb-2">
                         Year
                       </label>
-                      <motion.select
-                        name="year"
-                        value={formData.year}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 text-white transition-all"
-                        whileFocus={{ scale: 1.02 }}
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.03 }}
                       >
-                        <option value="" className="bg-gray-800 text-white">Select Year</option>
-                        {years.map(year => (
-                          <option key={year} value={year} className="bg-gray-800 text-white">{year}</option>
-                        ))}
-                      </motion.select>
+                        <Select
+                          name="year"
+                          placeholder="Select Year"
+                          selectedKeys={[formData.year]}
+                          onSelectionChange={(keys) => {
+                            const selectedYear = Array.from(keys)[0] || '';
+                            handleSelectChange('year', selectedYear);
+                          }}
+                          className="w-full"
+                          classNames={{
+                            trigger: "bg-gray-800 border border-gray-700 text-white px-4 py-3 rounded-lg min-h-[56px] transition-all hover:border-gray-500 focus:ring-2 focus:ring-gray-500",
+                            popover: "bg-gray-800 border border-gray-700 rounded-lg shadow-lg",
+                            listbox: "bg-gray-800 p-1",
+                            listboxItem: "text-white hover:bg-gray-700 px-4 py-3 rounded-md transition-colors",
+                            value: "text-white",
+                            indicator: "text-white"
+                          }}
+                          disallowEmptySelection={false}
+                        >
+                          {years.map((year) => (
+                            <SelectItem key={year} value={year}>
+                              {year}
+                            </SelectItem>
+                          ))}
+                        </Select>
+                      </motion.div>
                     </div>
 
                     {/* Student ID */}
@@ -523,7 +657,7 @@ const ProfileCompletion = () => {
                         value={formData.studentId}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 text-white transition-all"
-                        placeholder="e.g., f20240488"
+                        placeholder="e.g., 2023AAPS1111H"
                         whileFocus={{ scale: 1.02 }}
                       />
                     </div>
@@ -548,7 +682,7 @@ const ProfileCompletion = () => {
                       </svg>
                     </motion.div>
                     <motion.h2 
-                      className="ml-3 text-2xl font-bold text-gray-800"
+                      className="ml-3 text-2xl font-bold text-white"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 1.1 }}

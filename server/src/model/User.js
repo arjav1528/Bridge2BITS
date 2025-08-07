@@ -46,6 +46,14 @@ const userSchema = new mongoose.Schema({
     enum: ['Goa', 'Pilani', 'Hyderabad'],
     default: 'Goa'
   },
+  city: {
+    type: String,
+    default: ''
+  },
+  university: {
+    type: String,
+    default: ''
+  },
   studentId: {
     type: String,
     default: ''
