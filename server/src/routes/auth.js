@@ -188,7 +188,7 @@ router.post('/fix-campus', async (req, res) => {
 });
 
 // Get all students (for community page)
-router.get('/students', authenticateToken, async (req, res) => {
+router.get('/students', async (req, res) => {
   try {
     // Fetch all users with completed profiles
     const students = await User.find({ isProfileComplete: true })

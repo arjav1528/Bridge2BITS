@@ -22,10 +22,8 @@ const StudentCommunity = () => {
       }
     };
 
-    if (user) {
-      fetchStudents();
-    }
-  }, [user]);
+    fetchStudents();
+  }, []);
 
   if (loading) {
     return (
