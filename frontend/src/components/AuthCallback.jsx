@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const AuthCallback = () => {
   const { handleAuthCallback } = useAuth();
@@ -33,12 +34,32 @@ const AuthCallback = () => {
   }, [handleAuthCallback]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-        <p className="mt-4 text-gray-600">Completing authentication...</p>
-      </div>
-    </div>
+    <motion.div
+        className="min-h-screen flex items-center justify-center bg-gray-900"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+    >
+      <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+      >
+        <motion.div
+            className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3 }}
+        ></motion.div>
+        <motion.p
+            className="mt-4 text-gray-300"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+        >Completing authentication...</motion.p>
+      </motion.div>
+    </motion.div>
   );
 };
 
