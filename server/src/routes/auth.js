@@ -187,4 +187,31 @@ router.post('/fix-campus', async (req, res) => {
   }
 });
 
+// Get all students (for community page)
+router.get('/students', authenticateToken, async (req, res) => {
+  try {
+    // Fetch all users with completed profiles
+    const students = await User.find({ isProfileComplete: true })
+      .select('displayName email profilePicture bio branch year campus createdAt')
+      .sort({ createdAt: -1 });
+    
+    res.json({
+      success: true,
+      students: students.map(student => ({
+        id: student.id,
+        displayName: student.displayName,
+        email: student.email,
+        profilePicture: student.profilePicture,
+        bio: student.bio,
+        branch: student.branch,
+        year: student.year,
+        campus: student.campus
+      }))
+    });
+  } catch (error) {
+    console.error('Error fetching students:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
 module.exports = router;
