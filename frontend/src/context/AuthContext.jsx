@@ -20,7 +20,9 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuthStatus = async () => {
     try {
+      console.log('Checking auth status...');
       const response = await axios.get('/auth/me');
+      console.log('Auth response:', response.data);
       if (response.data.success) {
         setUser(response.data.user);
       } else {
@@ -32,6 +34,10 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const updateUserProfile = (userData) => {
+    setUser(userData);
   };
 
   useEffect(() => {
@@ -67,13 +73,26 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const isAuthorizedEmail = (email) => {
+    if (!email) return false;
+    const allowedDomains = [
+      '@goa.bits-pilani.ac.in',
+      '@pilani.bits-pilani.ac.in',
+      '@hyderabad.bits-pilani.ac.in'
+    ];
+    return allowedDomains.some(domain => email.toLowerCase().endsWith(domain));
+  };
+
   const value = {
     user,
     loading,
     loginWithGoogle,
     logout,
     handleAuthCallback,
-    isAuthenticated: !!user
+    updateUserProfile,
+    isAuthenticated: !!user,
+    isAuthorized: user ? isAuthorizedEmail(user.email) : false,
+    isProfileComplete: user ? user.isProfileComplete : false
   };
 
   return (

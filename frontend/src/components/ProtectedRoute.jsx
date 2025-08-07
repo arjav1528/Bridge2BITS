@@ -1,9 +1,10 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Unauthorized from './Unauthorized';
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, isAuthorized, isProfileComplete, loading } = useAuth();
 
   if (loading) {
     return (
@@ -13,7 +14,19 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  return isAuthenticated ? children : <Navigate to="/" replace />;
+  if (!isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
+
+  if (!isAuthorized) {
+    return <Unauthorized />;
+  }
+
+  if (!isProfileComplete) {
+    return <Navigate to="/complete-profile" replace />;
+  }
+
+  return children;
 };
 
 export default ProtectedRoute;

@@ -8,10 +8,11 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import AuthCallback from './components/AuthCallback';
 import ProtectedRoute from './components/ProtectedRoute';
+import Unauthorized from './components/Unauthorized';
+import ProfileCompletion from './components/ProfileCompletion';
 
 const LandingPage = () => {
   const { loginWithGoogle } = useAuth();
-
   return (
     <motion.div
         className="min-h-screen flex flex-col overflow-x-hidden bg-black"
@@ -246,6 +247,8 @@ const AppContent = () => {
   return (
     <Routes>
       <Route path="/auth/callback" element={<AuthCallback />} />
+      <Route path="/unauthorized" element={<Unauthorized />} />
+      <Route path="/complete-profile" element={<ProfileCompletion />} />
       <Route path="/dashboard" element={
         <ProtectedRoute>
           <Dashboard />

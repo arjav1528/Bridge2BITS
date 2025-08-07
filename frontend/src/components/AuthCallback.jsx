@@ -16,7 +16,37 @@ const AuthCallback = () => {
         const isAuthenticated = await handleAuthCallback();
         
         if (isAuthenticated) {
-          navigate('/dashboard');
+          // Check if user is authorized (has BITS email domain)
+          const response = await axios.get('/auth/me');
+          if (response.data.success) {
+            const userEmail = response.data.user.email;
+            const allowedDomains = [
+              '@goa.bits-pilani.ac.in',
+              '@pilani.bits-pilani.ac.in',
+              '@hyderabad.bits-pilani.ac.in'
+            ];
+            const isAuthorized = allowedDomains.some(domain => 
+              userEmail.toLowerCase().endsWith(domain)
+            );
+            
+            if (isAuthorized) {
+              // Check if profile is complete
+              // For existing users without isProfileComplete field, treat as complete
+              const isProfileComplete = response.data.user.isProfileComplete !== undefined 
+                ? response.data.user.isProfileComplete 
+                : true;
+              
+              if (isProfileComplete) {
+                navigate('/dashboard');
+              } else {
+                navigate('/complete-profile');
+              }
+            } else {
+              navigate('/unauthorized');
+            }
+          } else {
+            navigate('/');
+          }
         } else {
           navigate('/');
         }
