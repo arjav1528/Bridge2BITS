@@ -9,7 +9,6 @@ import Dashboard from './components/Dashboard';
 import AuthCallback from './components/AuthCallback';
 import ProtectedRoute from './components/ProtectedRoute';
 
-// Landing page component for guests with login functionality
 const LandingPage = () => {
   const { loginWithGoogle } = useAuth();
 
@@ -137,12 +136,13 @@ const LandingPage = () => {
           >
               <DotGrid
               dotSize={2}
-              shockRadius={20}
-              gap={10}
+              gap={15}
+              proximity={0}
+              shockRadius={250}
+              shockStrength={5}
+              returnDuration={0.5}
               baseColor="#FFFFFF"
               activeColor="#FFFF00"
-              proximity={150}
-              speedTrigger={100}
               />
           </motion.div>
           <div className="relative z-10 px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">

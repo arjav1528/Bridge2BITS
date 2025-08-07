@@ -23,7 +23,6 @@ router.get('/google/callback',
       { expiresIn: '1h' }
     );
     
-    // Set token in cookie
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -31,14 +30,12 @@ router.get('/google/callback',
       maxAge: 60 * 60 * 1000 // 1 hour
     });
     
-    // Redirect to frontend callback URL
     res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth/callback`);
   }
 );
 
 router.get('/logout', (req, res) => {
   req.logout(() => {
-    // Clear the token cookie
     res.clearCookie('token', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
@@ -48,9 +45,7 @@ router.get('/logout', (req, res) => {
   });
 });
 
-// Add a route to get current user
 router.get('/me', authenticateToken, (req, res) => {
-  // req.user is set by the authenticateToken middleware
   User.findById(req.user.userId)
     .then(user => {
       if (user) {

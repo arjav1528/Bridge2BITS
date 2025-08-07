@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 
-// Configure axios to send credentials
 axios.defaults.withCredentials = true;
 
 const AuthCallback = () => {
@@ -14,10 +13,8 @@ const AuthCallback = () => {
   useEffect(() => {
     const handleCallback = async () => {
       try {
-        // Call handleAuthCallback to process the authentication
         const isAuthenticated = await handleAuthCallback();
         
-        // Redirect based on authentication result
         if (isAuthenticated) {
           navigate('/dashboard');
         } else {

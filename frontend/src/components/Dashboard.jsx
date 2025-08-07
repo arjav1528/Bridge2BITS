@@ -7,8 +7,6 @@ import { motion } from 'framer-motion';
 const Dashboard = () => {
   const { user, logout } = useAuth();
 
-  console.log(user);
-
   return (
     <motion.div
         className="min-h-screen flex flex-col overflow-x-hidden bg-black"
@@ -145,12 +143,14 @@ const Dashboard = () => {
           >
               <DotGrid
               dotSize={2}
-              shockRadius={20}
-              gap={10}
+              gap={15}
+              proximity={120}
+              shockRadius={250}
+              shockStrength={5}
+              resistance={750}
+              returnDuration={1.5}
               baseColor="#FFFFFF"
               activeColor="#FFFF00"
-              proximity={150}
-              speedTrigger={100}
               />
           </motion.div>
           <div className="relative z-10 px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
