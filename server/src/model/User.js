@@ -24,6 +24,48 @@ const userSchema = new mongoose.Schema({
   profilePicture: {
     type: String
   },
+  // Student profile fields
+  bio: {
+    type: String,
+    default: ''
+  },
+  interests: {
+    type: [String],
+    default: []
+  },
+  branch: {
+    type: String,
+    default: ''
+  },
+  year: {
+    type: String,
+    default: ''
+  },
+  campus: {
+    type: String,
+    enum: ['Goa', 'Pilani', 'Hyderabad'],
+    default: 'Goa'
+  },
+  studentId: {
+    type: String,
+    default: ''
+  },
+  phoneNumber: {
+    type: String,
+    default: ''
+  },
+  linkedinProfile: {
+    type: String,
+    default: ''
+  },
+  githubProfile: {
+    type: String,
+    default: ''
+  },
+  isProfileComplete: {
+    type: Boolean,
+    default: false
+  },
   createdAt: {
     type: Date,
     default: Date.now
