@@ -44,7 +44,7 @@ router.get('/google/callback',
       maxAge: 60 * 60 * 1000 // 1 hour
     });
     
-    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth/callback`);
+    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}`);
   }
 );
 

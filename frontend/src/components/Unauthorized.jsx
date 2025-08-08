@@ -3,6 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 const Unauthorized = () => {
   const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await axios.get('/auth/logout');
+      navigate('/');
+    } catch (error) {
+      console.error('Error during logout:', error);
+      navigate('/');
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
@@ -41,7 +50,7 @@ const Unauthorized = () => {
           </button>
           
           <button
-            onClick={() => window.location.href = 'http://localhost:3000/auth/logout'}
+            onClick={handleLogout}
             className="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition-colors"
           >
             Sign Out
