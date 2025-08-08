@@ -10,6 +10,7 @@ import AuthCallback from './components/AuthCallback';
 import ProtectedRoute from './components/ProtectedRoute';
 import Unauthorized from './components/Unauthorized';
 import ProfileCompletion from './components/ProfileCompletion';
+import Profile from './components/Profile';
 import Community from './components/Community';
 import TabBar from './components/TabBar';
 import StudentCommunity from './components/StudentCommunity';
@@ -39,15 +40,14 @@ const LandingPage = () => {
               <div className="relative flex items-center justify-between">
                   <div className="flex-shrink-0 flex items-center">
                       <Link to="/" className="flex items-center">
-                        <motion.a
-                           title=""
+                        <motion.div
                            className="flex rounded outline-none focus:ring-1 focus:ring-gray-100 focus:ring-offset-2 items-center"
                            whileHover={{ scale: 1.05 }}
                            whileTap={{ scale: 0.95 }}
                         >
                           <img src="/b2b.svg" alt="Bridge2BITS Logo" className="h-20 w-auto mr-3" />
                           <p className="text-3xl font-bold text-white transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-100 focus:ring-offset-2"> Bridge2BITS </p>
-                        </motion.a>
+                        </motion.div>
                       </Link>
                   </div>
 
@@ -178,6 +178,11 @@ const AppContent = () => {
       <Route path="/auth/callback" element={<AuthCallback />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
       <Route path="/complete-profile" element={<ProfileCompletion />} />
+      <Route path="/profile" element={
+        <ProtectedRoute>
+          <Profile />
+        </ProtectedRoute>
+      } />
       <Route path="/dashboard" element={
         <ProtectedRoute>
           <Dashboard />

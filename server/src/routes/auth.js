@@ -157,6 +157,73 @@ router.post('/complete-profile', authenticateToken, async (req, res) => {
   }
 });
 
+// Update profile route
+router.put('/update-profile', authenticateToken, async (req, res) => {
+  try {
+    const {
+      bio,
+      interests,
+      branch,
+      year,
+      campus,
+      city,
+      university,
+      studentId,
+      phoneNumber,
+      linkedinProfile,
+      githubProfile
+    } = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.userId,
+      {
+        bio,
+        interests,
+        branch,
+        year,
+        campus,
+        city,
+        university,
+        studentId,
+        phoneNumber,
+        linkedinProfile,
+        githubProfile
+      },
+      { new: true }
+    );
+
+    if (updatedUser) {
+      res.json({
+        success: true,
+        message: 'Profile updated successfully',
+        user: {
+          id: updatedUser.id,
+          displayName: updatedUser.displayName,
+          email: updatedUser.email,
+          profilePicture: updatedUser.profilePicture,
+          isProfileComplete: updatedUser.isProfileComplete,
+          bio: updatedUser.bio,
+          interests: updatedUser.interests,
+          branch: updatedUser.branch,
+          year: updatedUser.year,
+          campus: updatedUser.campus,
+          city: updatedUser.city,
+          university: updatedUser.university,
+          studentId: updatedUser.studentId,
+          phoneNumber: updatedUser.phoneNumber,
+          linkedinProfile: updatedUser.linkedinProfile,
+          githubProfile: updatedUser.githubProfile
+        }
+      });
+    } else {
+      res.status(404).json({ success: false, message: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
 // Migration route to fix existing users with empty campus values
 router.post('/fix-campus', async (req, res) => {
   try {

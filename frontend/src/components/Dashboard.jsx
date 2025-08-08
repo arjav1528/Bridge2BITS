@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import DotGrid from '../Additives/DotGrid/DotGrid';
 import SpotlightCard from '../Additives/SpotlightCard';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TabBar from './TabBar';
 import StudentCommunity from './StudentCommunity';
 import FAQContent from './FAQContent';
@@ -11,6 +11,7 @@ import ResourcesContent from './ResourcesContent';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('home');
   
   const tabs = [
@@ -32,29 +33,40 @@ const Dashboard = () => {
               <div className="relative flex items-center justify-between">
                   <div className="flex-shrink-0 flex items-center">
                       <Link to="/" className="flex items-center">
-                        <motion.a
-                           title=""
+                        <motion.div
                            className="flex rounded outline-none focus:ring-1 focus:ring-gray-100 focus:ring-offset-2 items-center"
                            whileHover={{ scale: 1.05 }}
                            whileTap={{ scale: 0.95 }}
                         >
                           <img src="/b2b.svg" alt="Bridge2BITS Logo" className="h-20 w-auto mr-3" />
                           <p className="text-3xl font-bold text-white transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-100 focus:ring-offset-2 hover:border-none"> Bridge2BITS </p>
-                        </motion.a>
+                        </motion.div>
                       </Link>
                   </div>
 
                   <div className="flex lg:hidden">
-                      <motion.button
-                          type="button"
-                          className="text-white"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                      >
-                          <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
-                          </svg>
-                      </motion.button>
+                      <motion.div className="flex items-center space-x-4">
+                        {user?.profilePicture && (
+                          <motion.img
+                            src={user.profilePicture}
+                            alt={user.displayName}
+                            className="w-8 h-8 rounded-full cursor-pointer"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            onClick={() => navigate('/profile')}
+                          />
+                        )}
+                        <motion.button
+                            type="button"
+                            className="text-white"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                        >
+                            <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </motion.button>
+                      </motion.div>
                   </div>
 
                   <div className="hidden lg:absolute lg:inset-y-0 lg:flex lg:items-center lg:justify-center lg:space-x-12 lg:-translate-x-1/2 lg:left-1/2">
@@ -72,20 +84,22 @@ const Dashboard = () => {
                           <motion.img
                             src={user.profilePicture}
                             alt={user.displayName}
-                            className="w-8 h-8 rounded-full"
+                            className="w-8 h-8 rounded-full cursor-pointer"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.3, delay: 0.3 }}
+                            onClick={() => navigate('/profile')}
                           />
                         )}
                         <motion.span
-                          className="text-lg font-semibold text-white"
+                          className="text-lg font-semibold text-white cursor-pointer"
                           whileHover={{ scale: 1.05 }}
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ duration: 0.3, delay: 0.4 }}
+                          onClick={() => navigate('/profile')}
                         >{user?.displayName}</motion.span>
                         <motion.button
                           whileHover={{ scale: 1.05 }}

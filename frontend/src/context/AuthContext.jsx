@@ -20,9 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuthStatus = async () => {
     try {
-      console.log('Checking auth status...');
       const response = await axios.get('/auth/me');
-      console.log('Auth response:', response.data);
       if (response.data.success) {
         setUser(response.data.user);
       } else {
