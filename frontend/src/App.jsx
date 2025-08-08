@@ -20,6 +20,7 @@ import ResourcesContent from './components/ResourcesContent';
 const LandingPage = () => {
   const { loginWithGoogle } = useAuth();
   const [activeTab, setActiveTab] = useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const tabs = [
     { id: 'community', label: 'Student Community' },
@@ -66,12 +67,22 @@ const LandingPage = () => {
                           className="text-white"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
+                          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                       >
                           <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
                           </svg>
                       </motion.button>
                   </div>
+                  
+                  {/* Mobile menu */}
+                  {isMobileMenuOpen && (
+                      <div className="lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm border-b border-gray-200 py-4">
+                          <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                              <TabBar activeTab={activeTab} setActiveTab={setActiveTab} tabs={tabs} onClose={() => setIsMobileMenuOpen(false)} />
+                          </div>
+                      </div>
+                  )}
 
                   <div className="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
                       <motion.button
@@ -170,7 +181,35 @@ const LandingPage = () => {
           </div>
       </motion.section>
 
-      
+      <motion.footer
+        className="py-6 text-center text-gray-400 text-sm"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+      >
+        Made with ❤️ by{' '}
+        <motion.a
+          href="https://github.com/arjav1528"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          arjav1528
+        </motion.a>
+        {' '}and{' '}
+        <motion.a
+          href="https://github.com/Utkarsharma7"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Utkarsharma7
+        </motion.a>
+      </motion.footer>
     </motion.div>
   );
 };
