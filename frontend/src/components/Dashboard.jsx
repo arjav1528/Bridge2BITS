@@ -31,8 +31,14 @@ const Dashboard = () => {
       <header className="relative py-4 md:py-6 mx-4 md:mx-8 lg:mx-12 rounded-xl mt-2">
           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
               <div className="relative flex items-center justify-between">
-                  <div className="flex-shrink-0 flex items-center">
-                      <Link to="/" className="flex items-center">
+                  <div className="flex items-center space-x-8">
+                    <div className="flex-shrink-0 flex items-center">
+                      <motion.button
+                        onClick={() => setActiveTab('home')}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center bg-transparent border-none cursor-pointer"
+                      >
                         <motion.div
                            className="flex rounded outline-none focus:ring-1 focus:ring-gray-100 focus:ring-offset-2 items-center"
                            whileHover={{ scale: 1.05 }}
@@ -41,7 +47,11 @@ const Dashboard = () => {
                           <img src="/b2b.svg" alt="Bridge2BITS Logo" className="h-20 w-auto mr-3" />
                           <p className="text-3xl font-bold text-white transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-100 focus:ring-offset-2 hover:border-none"> Bridge2BITS </p>
                         </motion.div>
-                      </Link>
+                      </motion.button>
+                    </div>
+                    <div className="hidden lg:flex lg:items-center">
+                      <TabBar activeTab={activeTab} setActiveTab={setActiveTab} tabs={tabs} />
+                    </div>
                   </div>
 
                   <div className="flex lg:hidden">
@@ -67,10 +77,6 @@ const Dashboard = () => {
                             </svg>
                         </motion.button>
                       </motion.div>
-                  </div>
-
-                  <div className="hidden lg:absolute lg:inset-y-0 lg:flex lg:items-center lg:justify-center lg:space-x-12 lg:-translate-x-1/2 lg:left-1/2">
-                      <TabBar activeTab={activeTab} setActiveTab={setActiveTab} tabs={tabs} />
                   </div>
 
                   <div className="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
