@@ -15,6 +15,7 @@ import TabBar from './components/TabBar';
 import StudentCommunity from './components/StudentCommunity';
 import FAQContent from './components/FAQContent';
 import ResourcesContent from './components/ResourcesContent';
+import { MarqueeSection } from './components/Marquee';
 
 const LandingPage = () => {
   const { loginWithGoogle } = useAuth();
@@ -27,71 +28,7 @@ const LandingPage = () => {
     { id: 'resources', label: 'Resources' }
   ];
 
-  const testimonials = [
-    { 
-      name: "Priya Sharma", 
-      role: "Computer Science Student", 
-      campus: "BITS Pilani", 
-      content: "Bridge2BITS helped me connect with amazing developers and find incredible resources. The community is truly supportive and inspiring!",
-      rating: 5
-    },
-    { 
-      name: "Rahul Kumar", 
-      role: "Data Science Enthusiast", 
-      campus: "BITS Goa", 
-      content: "Found my dream internship through the community connections here. The resources shared are absolutely gold for any tech enthusiast.",
-      rating: 5
-    },
-    { 
-      name: "Anjali Patel", 
-      role: "Web Developer", 
-      campus: "BITS Hyderabad", 
-      content: "The courses and tutorials here are top-notch. Really helped me level up my skills and build a strong portfolio that landed me great opportunities.",
-      rating: 5
-    },
-    { 
-      name: "Arjun Singh", 
-      role: "AI/ML Student", 
-      campus: "BITS Pilani", 
-      content: "The community discussions and shared projects have been invaluable. I've learned more here than in many formal courses!",
-      rating: 5
-    },
-    { 
-      name: "Kavya Reddy", 
-      role: "Frontend Developer", 
-      campus: "BITS Hyderabad", 
-      content: "Love the collaborative environment here. The peer learning and resource sharing has accelerated my learning journey significantly.",
-      rating: 5
-    },
-    { 
-      name: "Rohan Gupta", 
-      role: "Backend Developer", 
-      campus: "BITS Goa", 
-      content: "Amazing platform for BITS students! The quality of resources and the networking opportunities are unmatched. Highly recommend!",
-      rating: 5
-    },
-    { 
-      name: "Shreya Agarwal", 
-      role: "Cybersecurity Enthusiast", 
-      campus: "BITS Pilani", 
-      content: "The security resources and ethical hacking tutorials shared here are phenomenal. Helped me land a cybersecurity internship at a top firm.",
-      rating: 5
-    },
-    { 
-      name: "Karan Joshi", 
-      role: "Full Stack Developer", 
-      campus: "BITS Dubai", 
-      content: "Bridge2BITS is a game-changer! The project collaborations and mentorship opportunities have shaped my career path beautifully.",
-      rating: 5
-    },
-    { 
-      name: "Nisha Malhotra", 
-      role: "Product Manager", 
-      campus: "BITS Hyderabad", 
-      content: "Transitioning from tech to product management was seamless thanks to the diverse perspectives and guidance from this community.",
-      rating: 5
-    }
-  ];
+ 
 
 
 
@@ -310,7 +247,10 @@ const LandingPage = () => {
                       >
                           Discover cutting-edge resources, connect with fellow developers, and accelerate your tech journey with our vibrant BITS community.
                       </motion.p>
-                       
+
+                      {/* Marquee Section */}
+                       <MarqueeSection />
+
                        {/* About Us Section */}
                        <motion.section
                            className="mt-20 max-w-6xl mx-auto"
