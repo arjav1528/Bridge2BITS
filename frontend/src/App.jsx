@@ -3,10 +3,6 @@ import './App.css'
 import { AuthProvider, useAuth } from './context/AuthContext';
 import DotGrid from './Additives/DotGrid/DotGrid';
 import SpotlightCard from './Additives/SpotlightCard';
-import Marquee from './components/magicui/marquee';
-import TestimonialCard from './components/TestimonialCard';
-// import FluidGlass from './Additives/FluidGlass/FluidGlass';
-// import GlassSurface from './Additives/GlassSurface';
 import { motion, useInView } from 'framer-motion';
 import { Routes, Route, Navigate, useLocation, Link } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
@@ -15,7 +11,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Unauthorized from './components/Unauthorized';
 import ProfileCompletion from './components/ProfileCompletion';
 import Profile from './components/Profile';
-import Community from './components/Community';
 import TabBar from './components/TabBar';
 import StudentCommunity from './components/StudentCommunity';
 import FAQContent from './components/FAQContent';
@@ -32,7 +27,6 @@ const LandingPage = () => {
     { id: 'resources', label: 'Resources' }
   ];
 
-  // Testimonials data for the marquee
   const testimonials = [
     { 
       name: "Priya Sharma", 
@@ -429,78 +423,7 @@ const LandingPage = () => {
                                </motion.p>
                            </div>
 
-                           {/* First Marquee Row */}
-                           <div className="relative mb-8 w-full overflow-hidden">
-                               <motion.div
-                                   initial={{ opacity: 0, x: -100 }}
-                                   animate={{ opacity: 1, x: 0 }}
-                                   transition={{ duration: 0.8, delay: 0.6 }}
-                                   className="w-full"
-                               >
-                                   <Marquee 
-                                       pauseOnHover 
-                                       className="[--duration:35s] [--gap:2rem] py-4 w-full"
-                                       repeat={2}
-                                   >
-                                       {testimonials.slice(0, 3).map((testimonial, index) => (
-                                           <TestimonialCard key={`first-${index}`} testimonial={testimonial} />
-                                       ))}
-                                   </Marquee>
-                               </motion.div>
-                               
-                               {/* Enhanced gradient overlays with full transparency at edges */}
-                               <div className="absolute left-0 top-0 w-80 h-full bg-gradient-to-r from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
-                               <div className="absolute right-0 top-0 w-80 h-full bg-gradient-to-l from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
-                           </div>
-
-                           {/* Second Marquee Row - Reverse Direction */}
-                           <div className="relative mb-8 w-full overflow-hidden">
-                               <motion.div
-                                   initial={{ opacity: 0, x: 100 }}
-                                   animate={{ opacity: 1, x: 0 }}
-                                   transition={{ duration: 0.8, delay: 0.8 }}
-                                   className="w-full"
-                               >
-                                   <Marquee 
-                                       reverse 
-                                       pauseOnHover 
-                                       className="[--duration:40s] [--gap:2rem] py-4 w-full"
-                                       repeat={2}
-                                   >
-                                       {testimonials.slice(3, 6).map((testimonial, index) => (
-                                           <TestimonialCard key={`second-${index}`} testimonial={testimonial} />
-                                       ))}
-                                   </Marquee>
-                               </motion.div>
-                               
-                               {/* Enhanced gradient overlays with full transparency at edges */}
-                               <div className="absolute left-0 top-0 w-80 h-full bg-gradient-to-r from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
-                               <div className="absolute right-0 top-0 w-80 h-full bg-gradient-to-l from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
-                           </div>
-
-                           {/* Third Marquee Row - Faster Speed */}
-                           <div className="relative w-full overflow-hidden">
-                               <motion.div
-                                   initial={{ opacity: 0, x: -100 }}
-                                   animate={{ opacity: 1, x: 0 }}
-                                   transition={{ duration: 0.8, delay: 1.0 }}
-                                   className="w-full"
-                               >
-                                   <Marquee 
-                                       pauseOnHover 
-                                       className="[--duration:30s] [--gap:2rem] py-4 w-full"
-                                       repeat={2}
-                                   >
-                                       {testimonials.map((testimonial, index) => (
-                                           <TestimonialCard key={`third-${index}`} testimonial={testimonial} />
-                                       ))}
-                                   </Marquee>
-                               </motion.div>
-                               
-                               {/* Enhanced gradient overlays with full transparency at edges */}
-                               <div className="absolute left-0 top-0 w-80 h-full bg-gradient-to-r from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
-                               <div className="absolute right-0 top-0 w-80 h-full bg-gradient-to-l from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
-                           </div>
+                           
 
                            {/* CTA Section */}
                            <motion.div

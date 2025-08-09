@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin "daisyui";
+/* DaisyUI should be configured in tailwind.config.js instead */
 
 /* Marquee animations */
 @keyframes marquee {

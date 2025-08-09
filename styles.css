@@ -16,8 +16,7 @@
     overflow: hidden;
 }
 
-// Extend the element to full width and set the fade-out color to transparent.
 .element {
-    width: 100%; // filepath: /home/venomop/DevShit/Bridge2BITS/styles.css
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)); // Adjust the gradient as needed
+    width: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
 }
