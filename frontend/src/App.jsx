@@ -3,6 +3,8 @@ import './App.css'
 import { AuthProvider, useAuth } from './context/AuthContext';
 import DotGrid from './Additives/DotGrid/DotGrid';
 import SpotlightCard from './Additives/SpotlightCard';
+import Marquee from './components/magicui/marquee';
+import TestimonialCard from './components/TestimonialCard';
 // import FluidGlass from './Additives/FluidGlass/FluidGlass';
 // import GlassSurface from './Additives/GlassSurface';
 import { motion, useInView } from 'framer-motion';
@@ -30,6 +32,73 @@ const LandingPage = () => {
     { id: 'resources', label: 'Resources' }
   ];
 
+  // Testimonials data for the marquee
+  const testimonials = [
+    { 
+      name: "Priya Sharma", 
+      role: "Computer Science Student", 
+      campus: "BITS Pilani", 
+      content: "Bridge2BITS helped me connect with amazing developers and find incredible resources. The community is truly supportive and inspiring!",
+      rating: 5
+    },
+    { 
+      name: "Rahul Kumar", 
+      role: "Data Science Enthusiast", 
+      campus: "BITS Goa", 
+      content: "Found my dream internship through the community connections here. The resources shared are absolutely gold for any tech enthusiast.",
+      rating: 5
+    },
+    { 
+      name: "Anjali Patel", 
+      role: "Web Developer", 
+      campus: "BITS Hyderabad", 
+      content: "The courses and tutorials here are top-notch. Really helped me level up my skills and build a strong portfolio that landed me great opportunities.",
+      rating: 5
+    },
+    { 
+      name: "Arjun Singh", 
+      role: "AI/ML Student", 
+      campus: "BITS Pilani", 
+      content: "The community discussions and shared projects have been invaluable. I've learned more here than in many formal courses!",
+      rating: 5
+    },
+    { 
+      name: "Kavya Reddy", 
+      role: "Frontend Developer", 
+      campus: "BITS Hyderabad", 
+      content: "Love the collaborative environment here. The peer learning and resource sharing has accelerated my learning journey significantly.",
+      rating: 5
+    },
+    { 
+      name: "Rohan Gupta", 
+      role: "Backend Developer", 
+      campus: "BITS Goa", 
+      content: "Amazing platform for BITS students! The quality of resources and the networking opportunities are unmatched. Highly recommend!",
+      rating: 5
+    },
+    { 
+      name: "Shreya Agarwal", 
+      role: "Cybersecurity Enthusiast", 
+      campus: "BITS Pilani", 
+      content: "The security resources and ethical hacking tutorials shared here are phenomenal. Helped me land a cybersecurity internship at a top firm.",
+      rating: 5
+    },
+    { 
+      name: "Karan Joshi", 
+      role: "Full Stack Developer", 
+      campus: "BITS Dubai", 
+      content: "Bridge2BITS is a game-changer! The project collaborations and mentorship opportunities have shaped my career path beautifully.",
+      rating: 5
+    },
+    { 
+      name: "Nisha Malhotra", 
+      role: "Product Manager", 
+      campus: "BITS Hyderabad", 
+      content: "Transitioning from tech to product management was seamless thanks to the diverse perspectives and guidance from this community.",
+      rating: 5
+    }
+  ];
+
 
 
   return (
@@ -52,30 +121,28 @@ const LandingPage = () => {
           }}
         />
       </div> */}
-             <header className="relative py-6 md:py-8 mx-4 md:mx-8 lg:mx-12 bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-xl border border-gray-700/50 rounded-2xl mt-4 shadow-2xl">
+             <header className="relative py-4 md:py-6 mx-4 md:mx-8 lg:mx-12 bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-2xl border border-gray-600/30 rounded-3xl mt-6 shadow-2xl">
            <div className="px-6 mx-auto max-w-7xl sm:px-8 lg:px-12">
                <div className="relative flex items-center justify-between">
                    <div className="flex items-center space-x-8">
                      <div className="flex-shrink-0 flex items-center">
                        <motion.button
                          onClick={() => setActiveTab('home')}
-                         whileHover={{ scale: 1.05, rotate: 2 }}
-                         whileTap={{ scale: 0.95 }}
-                         className="flex items-center bg-transparent border-none cursor-pointer group"
+                         whileHover={{ scale: 1.03 }}
+                         whileTap={{ scale: 0.97 }}
+                         className="flex items-center bg-transparent border-none cursor-pointer group focus-ring"
                        >
                          <motion.div
-                            className="flex rounded-xl outline-none items-center p-2 group-hover:bg-white/10 transition-all duration-300"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            className="flex rounded-2xl outline-none items-center p-3 group-hover:bg-white/10 transition-all duration-300 border border-transparent group-hover:border-white/20"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
                          >
                            <motion.img 
                              src="/b2b.svg" 
                              alt="Bridge2BITS Logo" 
-                             className="h-20 w-auto mr-3 drop-shadow-lg"
-                             animate={{ rotate: [0, 5, 0] }}
-                             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                             className="h-14 w-auto mr-3 drop-shadow-lg"
                            />
-                           <p className="text-3xl font-bold text-white transition-all duration-300 rounded font-pj group-hover:text-blue-300 drop-shadow-lg"> Bridge2BITS </p>
+                           <p className="text-2xl font-bold text-white transition-all duration-300 rounded font-pj group-hover:text-blue-300 drop-shadow-lg"> Bridge2BITS </p>
                          </motion.div>
                        </motion.button>
                      </div>
@@ -87,30 +154,36 @@ const LandingPage = () => {
                   <div className="flex lg:hidden">
                       <motion.button
                           type="button"
-                          className="text-white"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
+                          className="text-white p-2 rounded-xl hover:bg-white/10 transition-all duration-200 focus-ring"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                       >
                           <svg className="w-7 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                           </svg>
                       </motion.button>
                   </div>
                   
                   {/* Mobile menu */}
                   {isMobileMenuOpen && (
-                      <div className="lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm border-b border-gray-200 py-4">
-                          <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                      <motion.div 
+                          className="lg:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-xl border border-gray-600/30 rounded-2xl py-6 mt-4 shadow-2xl"
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
+                      >
+                          <div className="px-6 mx-auto max-w-7xl sm:px-8 lg:px-8">
                               <TabBar activeTab={activeTab} setActiveTab={setActiveTab} tabs={tabs} onClose={() => setIsMobileMenuOpen(false)} />
                           </div>
-                      </div>
+                      </motion.div>
                   )}
 
                                      <div className="hidden lg:flex lg:items-center lg:justify-center lg:space-x-10">
                        <motion.button
-                           whileHover={{ scale: 1.05, y: -2 }}
-                           whileTap={{ scale: 0.95 }}
+                           whileHover={{ scale: 1.03, y: -1 }}
+                           whileTap={{ scale: 0.97 }}
                            initial={{ opacity: 0, y: -20 }}
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ duration: 0.3 }}
@@ -126,8 +199,8 @@ const LandingPage = () => {
                                border-0
                                rounded-2xl
                                font-pj
-                               shadow-lg hover:shadow-xl
-                               focus:outline-none focus:ring-4 focus:ring-blue-500/50
+                               shadow-lg hover:shadow-2xl
+                               focus-ring focus:ring-blue-500/50
                                hover:from-blue-700 hover:via-purple-700 hover:to-pink-700
                                hover:shadow-blue-500/25
                                relative overflow-hidden group
@@ -182,28 +255,10 @@ const LandingPage = () => {
                            transition={{ duration: 0.5 }}
                            whileHover={{ scale: 1.05, y: -2 }}
                        >
-                           {/* Animated background gradient */}
-                           <motion.div
-                               className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full"
-                               animate={{
-                                   backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                               }}
-                               transition={{
-                                   duration: 3,
-                                   repeat: Infinity,
-                                   ease: "easeInOut"
-                               }}
-                               style={{
-                                   backgroundSize: "200% 200%"
-                               }}
-                           />
-                           
-                           {/* Floating emojis */}
                            <motion.span 
                                className="mr-2 relative z-10"
                                animate={{ 
-                                   y: [0, -5, 0],
-                                   rotate: [0, 5, 0]
+                                   y: [0, -3, 0],
                                }}
                                transition={{ 
                                    duration: 2, 
@@ -221,8 +276,7 @@ const LandingPage = () => {
                            <motion.span 
                                className="ml-2 relative z-10"
                                animate={{ 
-                                   y: [0, 5, 0],
-                                   rotate: [0, -5, 0]
+                                   y: [0, 3, 0],
                                }}
                                transition={{ 
                                    duration: 2, 
@@ -233,46 +287,20 @@ const LandingPage = () => {
                            >
                                💻
                            </motion.span>
-                           
-                           {/* Shimmer effect */}
-                           <motion.div
-                               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                               animate={{
-                                   x: ["-100%", "100%"]
-                               }}
-                               transition={{
-                                   duration: 2,
-                                   repeat: Infinity,
-                                   ease: "linear"
-                               }}
-                           />
                        </motion.div>
                       
-                                                                                             <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.2)">
+                       <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.2)">
                              <motion.h1
-                                 className="text-4xl font-bold leading-tight text-white mb-8 sm:text-5xl sm:leading-tight lg:text-7xl lg:leading-tight font-pj drop-shadow-2xl"
+                                 className="text-5xl font-bold leading-tight text-white mb-8 sm:text-6xl sm:leading-tight lg:text-7xl lg:leading-tight font-pj drop-shadow-2xl"
                                  initial={{ opacity: 0, y: 20 }}
                                  animate={{ opacity: 1, y: 0 }}
                                  transition={{ duration: 0.5, delay: 0.3 }}
                                  whileHover={{ 
                                      scale: 1.02,
-                                     textShadow: "0 0 20px rgba(59, 130, 246, 0.5)"
                                  }}
                              >
                                  <motion.span
-                                     animate={{ 
-                                         backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                                     }}
-                                     transition={{ 
-                                         duration: 8, 
-                                         repeat: Infinity, 
-                                         ease: "easeInOut" 
-                                     }}
-                                     className="bg-gradient-to-r from-white via-blue-100 via-purple-100 to-white bg-clip-text text-transparent"
-                                     style={{
-                                         backgroundSize: "200% 100%",
-                                         backgroundPosition: "0% 50%"
-                                     }}
+                                     className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
                                  >
                                      Quality resources shared by the community
                                  </motion.span>
@@ -280,250 +308,262 @@ const LandingPage = () => {
                          </SpotlightCard>
                           
                       <motion.p
-                          className="max-w-2xl mx-auto mt-8 text-xl leading-8 text-gray-300 font-inter bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-xl px-8 py-6 rounded-2xl shadow-2xl border border-gray-700/50"
+                          className="max-w-3xl mx-auto mt-8 text-xl leading-8 text-gray-300 font-inter bg-gradient-to-r from-gray-900/90 to-gray-800/90 backdrop-blur-xl px-8 py-6 rounded-2xl shadow-2xl border border-gray-700/50"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: 0.2 }}
+                          transition={{ duration: 0.5, delay: 0.4 }}
                           whileHover={{ scale: 1.02, y: -5 }}
                       >
                           Discover cutting-edge resources, connect with fellow developers, and accelerate your tech journey with our vibrant BITS community.
                       </motion.p>
                        
-                                               {/* About Us Section */}
-                                                 <motion.section
-                             className="mt-20 max-w-6xl mx-auto"
-                             initial={{ opacity: 0, x: -50 }}
-                             whileInView={{ opacity: 1, x: 0 }}
-                             transition={{ duration: 0.8, ease: "easeOut" }}
-                             viewport={{ margin: "-100px" }}
-                         >
-                             <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.1)">
-                                 <motion.h2
-                                     className="text-4xl font-bold text-white mb-8 text-center bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-                                     initial={{ opacity: 0, y: 20 }}
-                                     whileInView={{ opacity: 1, y: 0 }}
-                                     transition={{ duration: 0.6, delay: 0.2 }}
-                                     viewport={{ margin: "-100px" }}
-                                 >
-                                     About Us
-                                 </motion.h2>
-                                 <motion.p
-                                     className="text-gray-300 text-xl leading-relaxed text-center max-w-4xl mx-auto"
-                                     initial={{ opacity: 0, y: 20 }}
-                                     whileInView={{ opacity: 1, y: 0 }}
-                                     transition={{ duration: 0.6, delay: 0.4 }}
-                                     viewport={{ margin: "-100px" }}
-                                 >
-                                     Bridge2BITS is a community-driven platform designed to connect BITS Pilani students across all campuses. 
-                                     We provide quality resources, foster meaningful connections, and create opportunities for collaboration 
-                                     and growth in the tech community.
-                                 </motion.p>
-                             </SpotlightCard>
-                         </motion.section>
+                       {/* About Us Section */}
+                       <motion.section
+                           className="mt-20 max-w-6xl mx-auto"
+                           initial={{ opacity: 0, y: 50 }}
+                           animate={{ opacity: 1, y: 0 }}
+                           transition={{ duration: 0.8, ease: "easeOut" }}
+                       >
+                           <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.1)">
+                               <motion.h2
+                                   className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+                                   initial={{ opacity: 0, y: 20 }}
+                                   animate={{ opacity: 1, y: 0 }}
+                                   transition={{ duration: 0.6, delay: 0.2 }}
+                               >
+                                   About Us
+                               </motion.h2>
+                               <motion.p
+                                   className="text-gray-300 text-xl leading-relaxed text-center max-w-4xl mx-auto"
+                                   initial={{ opacity: 0, y: 20 }}
+                                   animate={{ opacity: 1, y: 0 }}
+                                   transition={{ duration: 0.6, delay: 0.4 }}
+                               >
+                                   Bridge2BITS is a community-driven platform designed to connect BITS Pilani students across all campuses. 
+                                   We provide quality resources, foster meaningful connections, and create opportunities for collaboration 
+                                   and growth in the tech community.
+                               </motion.p>
+                           </SpotlightCard>
+                       </motion.section>
 
                                                {/* Courses Section */}
                                                  <motion.section
-                             className="mt-16 max-w-6xl mx-auto"
+                             className="mt-20 max-w-6xl mx-auto"
                              initial={{ opacity: 0, x: -50 }}
-                             whileInView={{ opacity: 1, x: 0 }}
+                             animate={{ opacity: 1, x: 0 }}
                              transition={{ duration: 0.8, ease: "easeOut" }}
-                             viewport={{ margin: "-100px" }}
                          >
-                             <div className="bg-gray-900/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 shadow-2xl">
+                             <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-xl rounded-3xl p-10 border border-gray-600/30 shadow-2xl">
                                  <motion.h2
-                                     className="text-3xl font-bold text-white mb-8 text-center"
+                                     className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
                                      initial={{ opacity: 0, y: 20 }}
-                                     whileInView={{ opacity: 1, y: 0 }}
+                                     animate={{ opacity: 1, y: 0 }}
                                      transition={{ duration: 0.6, delay: 0.2 }}
-                                     viewport={{ margin: "-100px" }}
                                  >
                                      Featured Courses
                                  </motion.h2>
-                               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                 <motion.p
+                                     className="text-gray-300 text-lg text-center mb-12 max-w-3xl mx-auto"
+                                     initial={{ opacity: 0, y: 20 }}
+                                     animate={{ opacity: 1, y: 0 }}
+                                     transition={{ duration: 0.6, delay: 0.3 }}
+                                 >
+                                     Explore our curated collection of courses designed to accelerate your learning journey
+                                 </motion.p>
+                               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                    {[
-                                       { title: "Web Development", description: "Master HTML, CSS, JavaScript and modern frameworks", icon: "🌐" },
-                                       { title: "Data Science", description: "Learn Python, ML, and data analysis techniques", icon: "📊" },
-                                       { title: "Mobile Development", description: "Build iOS and Android apps with React Native", icon: "📱" },
-                                       { title: "Cloud Computing", description: "AWS, Azure, and cloud infrastructure", icon: "☁️" },
-                                       { title: "Cybersecurity", description: "Network security and ethical hacking", icon: "🔒" },
-                                       { title: "AI & Machine Learning", description: "Deep learning and neural networks", icon: "🤖" }
+                                       { title: "Web Development", description: "Master HTML, CSS, JavaScript and modern frameworks", icon: "🌐", color: "from-blue-500 to-cyan-500" },
+                                       { title: "Data Science", description: "Learn Python, ML, and data analysis techniques", icon: "📊", color: "from-green-500 to-emerald-500" },
+                                       { title: "Mobile Development", description: "Build iOS and Android apps with React Native", icon: "📱", color: "from-purple-500 to-pink-500" },
+                                       { title: "Cloud Computing", description: "AWS, Azure, and cloud infrastructure", icon: "☁️", color: "from-yellow-500 to-orange-500" },
+                                       { title: "Cybersecurity", description: "Network security and ethical hacking", icon: "🔒", color: "from-red-500 to-rose-500" },
+                                       { title: "AI & Machine Learning", description: "Deep learning and neural networks", icon: "🤖", color: "from-indigo-500 to-purple-500" }
                                    ].map((course, index) => (
                                        <motion.div
                                            key={index}
-                                           className="bg-gray-800/50 rounded-xl p-6 border border-gray-600 hover:border-blue-500 transition-all duration-300 hover:scale-105"
+                                           className="relative group bg-gray-800/50 rounded-2xl p-8 border border-gray-600/30 hover:border-gray-500/50 transition-all duration-300 hover:scale-105 overflow-hidden"
                                            initial={{ opacity: 0, y: 20 }}
                                            animate={{ opacity: 1, y: 0 }}
                                            transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
-                                           whileHover={{ scale: 1.02 }}
+                                           whileHover={{ scale: 1.03, y: -5 }}
                                        >
-                                           <div className="text-4xl mb-4">{course.icon}</div>
-                                           <h3 className="text-xl font-semibold text-white mb-2">{course.title}</h3>
-                                           <p className="text-gray-300">{course.description}</p>
+                                           {/* Gradient background overlay */}
+                                           <div className={`absolute inset-0 bg-gradient-to-br ${course.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl`} />
+                                           
+                                           <div className="relative z-10">
+                                               <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">{course.icon}</div>
+                                               <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">{course.title}</h3>
+                                               <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">{course.description}</p>
+                                           </div>
                                        </motion.div>
                                    ))}
                                </div>
                            </div>
                        </motion.section>
 
-                                               {/* Blog Section */}
-                                                 <motion.section
-                             className="mt-16 max-w-6xl mx-auto"
-                             initial={{ opacity: 0, x: 50 }}
-                             whileInView={{ opacity: 1, x: 0 }}
-                             transition={{ duration: 0.8, ease: "easeOut" }}
-                             viewport={{ margin: "-100px" }}
-                         >
-                             <div className="bg-gray-900/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 shadow-2xl">
-                                 <motion.h2
-                                     className="text-3xl font-bold text-white mb-8 text-center"
-                                     initial={{ opacity: 0, y: 20 }}
-                                     whileInView={{ opacity: 1, y: 0 }}
-                                     transition={{ duration: 0.6, delay: 0.2 }}
-                                     viewport={{ margin: "-100px" }}
-                                 >
-                                     Latest Blog Posts
-                                 </motion.h2>
-                               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                   {[
-                                       { title: "Getting Started with React", author: "Tech Team", date: "Dec 15, 2024", readTime: "5 min read" },
-                                       { title: "Machine Learning Basics", author: "AI Community", date: "Dec 12, 2024", readTime: "8 min read" },
-                                       { title: "Web Development Trends 2024", author: "Dev Team", date: "Dec 10, 2024", readTime: "6 min read" }
-                                   ].map((post, index) => (
-                                       <motion.div
-                                           key={index}
-                                           className="bg-gray-800/50 rounded-xl p-6 border border-gray-600 hover:border-green-500 transition-all duration-300"
-                                           initial={{ opacity: 0, y: 20 }}
-                                           animate={{ opacity: 1, y: 0 }}
-                                           transition={{ duration: 0.5, delay: 1.8 + index * 0.1 }}
-                                           whileHover={{ scale: 1.02 }}
-                                       >
-                                           <h3 className="text-xl font-semibold text-white mb-3">{post.title}</h3>
-                                           <div className="flex justify-between text-sm text-gray-400 mb-4">
-                                               <span>{post.author}</span>
-                                               <span>{post.date}</span>
-                                           </div>
-                                           <p className="text-gray-300 mb-4">Discover the latest insights and tutorials from our community experts.</p>
-                                           <div className="flex justify-between items-center">
-                                               <span className="text-blue-400 text-sm">{post.readTime}</span>
-                                               <button className="text-blue-400 hover:text-blue-300 transition-colors">Read More →</button>
-                                           </div>
-                                       </motion.div>
-                                   ))}
-                               </div>
+
+                       {/* Testimonials Section with Infinite Marquee */}
+                       <motion.section
+                           className="mt-20 w-full overflow-hidden"
+                           initial={{ opacity: 0, y: 50 }}
+                           animate={{ opacity: 1, y: 0 }}
+                           transition={{ duration: 0.8, ease: "easeOut" }}
+                       >
+                           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                               <motion.h2
+                                   className="text-5xl font-bold mb-6 text-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+                                   initial={{ opacity: 0, y: 20 }}
+                                   animate={{ opacity: 1, y: 0 }}
+                                   transition={{ duration: 0.6, delay: 0.2 }}
+                               >
+                                   What Our Community Says
+                               </motion.h2>
+                               
+                               <motion.p
+                                   className="text-gray-300 text-xl text-center mb-16 max-w-4xl mx-auto leading-relaxed"
+                                   initial={{ opacity: 0, y: 20 }}
+                                   animate={{ opacity: 1, y: 0 }}
+                                   transition={{ duration: 0.6, delay: 0.4 }}
+                               >
+                                   Hear from our amazing community of BITS students who are building their future together through collaboration, learning, and innovation.
+                               </motion.p>
                            </div>
-                                               </motion.section>
 
-                                                 {/* Testimonials Section */}
-                                                   <motion.section
-                              className="mt-16 max-w-6xl mx-auto"
-                              initial={{ opacity: 0, x: -50 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.8, ease: "easeOut" }}
-                              viewport={{ margin: "-100px" }}
-                          >
-                              <div className="bg-gray-900/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 shadow-2xl">
-                                  <motion.h2
-                                      className="text-3xl font-bold text-white mb-8 text-center"
-                                      initial={{ opacity: 0, y: 20 }}
-                                      whileInView={{ opacity: 1, y: 0 }}
-                                      transition={{ duration: 0.6, delay: 0.2 }}
-                                      viewport={{ margin: "-100px" }}
-                                  >
-                                      What Our Community Says
-                                  </motion.h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {[
-                                        { 
-                                            name: "Priya Sharma", 
-                                            role: "Computer Science", 
-                                            campus: "BITS Pilani", 
-                                            content: "Bridge2BITS helped me connect with amazing developers and find incredible resources. The community is truly supportive!",
-                                            rating: 5
-                                        },
-                                        { 
-                                            name: "Rahul Kumar", 
-                                            role: "Data Science", 
-                                            campus: "BITS Goa", 
-                                            content: "Found my dream internship through the community. The resources shared here are gold for any tech enthusiast.",
-                                            rating: 5
-                                        },
-                                        { 
-                                            name: "Anjali Patel", 
-                                            role: "Web Development", 
-                                            campus: "BITS Hyderabad", 
-                                            content: "The courses and tutorials here are top-notch. Really helped me level up my skills and build a strong portfolio.",
-                                            rating: 5
-                                        }
-                                    ].map((testimonial, index) => (
-                                        <motion.div
-                                            key={index}
-                                            className="bg-gray-800/50 rounded-xl p-6 border border-gray-600 hover:border-yellow-500 transition-all duration-300"
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ duration: 0.5, delay: 2.2 + index * 0.1 }}
-                                            whileHover={{ scale: 1.02 }}
-                                        >
-                                            <div className="flex items-center mb-4">
-                                                <div className="flex text-yellow-400">
-                                                    {[...Array(testimonial.rating)].map((_, i) => (
-                                                        <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                                        </svg>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                            <p className="text-gray-300 mb-4 italic">"{testimonial.content}"</p>
-                                            <div className="border-t border-gray-600 pt-4">
-                                                <h4 className="text-white font-semibold">{testimonial.name}</h4>
-                                                <p className="text-gray-400 text-sm">{testimonial.role} • {testimonial.campus}</p>
-                                            </div>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </div>
-                        </motion.section>
+                           {/* First Marquee Row */}
+                           <div className="relative mb-8 w-full overflow-hidden">
+                               <motion.div
+                                   initial={{ opacity: 0, x: -100 }}
+                                   animate={{ opacity: 1, x: 0 }}
+                                   transition={{ duration: 0.8, delay: 0.6 }}
+                                   className="w-full"
+                               >
+                                   <Marquee 
+                                       pauseOnHover 
+                                       className="[--duration:35s] [--gap:2rem] py-4 w-full"
+                                       repeat={2}
+                                   >
+                                       {testimonials.slice(0, 3).map((testimonial, index) => (
+                                           <TestimonialCard key={`first-${index}`} testimonial={testimonial} />
+                                       ))}
+                                   </Marquee>
+                               </motion.div>
+                               
+                               {/* Enhanced gradient overlays with full transparency at edges */}
+                               <div className="absolute left-0 top-0 w-80 h-full bg-gradient-to-r from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
+                               <div className="absolute right-0 top-0 w-80 h-full bg-gradient-to-l from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
+                           </div>
 
-                                                                                                                                                                                                 {/* Community Section */}
-                                                     <motion.section
-                               className="mt-16 max-w-6xl mx-auto"
-                               initial={{ opacity: 0, x: 50 }}
-                               whileInView={{ opacity: 1, x: 0 }}
-                               transition={{ duration: 0.8, ease: "easeOut" }}
-                               viewport={{ margin: "-100px" }}
+                           {/* Second Marquee Row - Reverse Direction */}
+                           <div className="relative mb-8 w-full overflow-hidden">
+                               <motion.div
+                                   initial={{ opacity: 0, x: 100 }}
+                                   animate={{ opacity: 1, x: 0 }}
+                                   transition={{ duration: 0.8, delay: 0.8 }}
+                                   className="w-full"
+                               >
+                                   <Marquee 
+                                       reverse 
+                                       pauseOnHover 
+                                       className="[--duration:40s] [--gap:2rem] py-4 w-full"
+                                       repeat={2}
+                                   >
+                                       {testimonials.slice(3, 6).map((testimonial, index) => (
+                                           <TestimonialCard key={`second-${index}`} testimonial={testimonial} />
+                                       ))}
+                                   </Marquee>
+                               </motion.div>
+                               
+                               {/* Enhanced gradient overlays with full transparency at edges */}
+                               <div className="absolute left-0 top-0 w-80 h-full bg-gradient-to-r from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
+                               <div className="absolute right-0 top-0 w-80 h-full bg-gradient-to-l from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
+                           </div>
+
+                           {/* Third Marquee Row - Faster Speed */}
+                           <div className="relative w-full overflow-hidden">
+                               <motion.div
+                                   initial={{ opacity: 0, x: -100 }}
+                                   animate={{ opacity: 1, x: 0 }}
+                                   transition={{ duration: 0.8, delay: 1.0 }}
+                                   className="w-full"
+                               >
+                                   <Marquee 
+                                       pauseOnHover 
+                                       className="[--duration:30s] [--gap:2rem] py-4 w-full"
+                                       repeat={2}
+                                   >
+                                       {testimonials.map((testimonial, index) => (
+                                           <TestimonialCard key={`third-${index}`} testimonial={testimonial} />
+                                       ))}
+                                   </Marquee>
+                               </motion.div>
+                               
+                               {/* Enhanced gradient overlays with full transparency at edges */}
+                               <div className="absolute left-0 top-0 w-80 h-full bg-gradient-to-r from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
+                               <div className="absolute right-0 top-0 w-80 h-full bg-gradient-to-l from-black via-black/90 via-black/60 to-transparent pointer-events-none z-10"></div>
+                           </div>
+
+                           {/* CTA Section */}
+                           <motion.div
+                               className="text-center mt-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+                               initial={{ opacity: 0, y: 30 }}
+                               animate={{ opacity: 1, y: 0 }}
+                               transition={{ duration: 0.8, delay: 1.2 }}
                            >
-                                                         <div className="bg-gray-900/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 shadow-2xl">
-                                                                 <motion.h2
-                                      className="text-3xl font-bold text-white mb-6 text-center"
-                                      initial={{ opacity: 0, y: 20 }}
-                                      whileInView={{ opacity: 1, y: 0 }}
-                                      transition={{ duration: 0.6, delay: 0.2 }}
-                                      viewport={{ margin: "-100px" }}
-                                  >
-                                     Join Our Community
-                                 </motion.h2>
-                                                                                                                                <motion.p
-                                      className="text-gray-300 text-lg leading-relaxed text-center mb-8"
-                                      initial={{ opacity: 0, y: 20 }}
-                                      whileInView={{ opacity: 1, y: 0 }}
-                                      transition={{ duration: 0.6, delay: 0.4 }}
-                                      viewport={{ margin: "-100px" }}
-                                  >
-                                     Connect with fellow BITS students, share knowledge, and grow together in our vibrant community.
-                                 </motion.p>
-                                                                 <motion.div
-                                      className="text-center"
-                                      initial={{ opacity: 0, y: 20 }}
-                                      whileInView={{ opacity: 1, y: 0 }}
-                                      transition={{ duration: 0.6, delay: 0.6 }}
-                                      viewport={{ margin: "-100px" }}
-                                  >
+                               <motion.button
+                                   className="px-10 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-2xl font-semibold text-lg hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105"
+                                   whileHover={{ scale: 1.05, y: -2 }}
+                                   whileTap={{ scale: 0.95 }}
+                               >
+                                   Join Our Success Stories →
+                               </motion.button>
+                           </motion.div>
+                       </motion.section>
+
+                       {/* Community Section */}
+                       <motion.section
+                           className="mt-16 max-w-6xl mx-auto"
+                           initial={{ opacity: 0, y: 50 }}
+                           animate={{ opacity: 1, y: 0 }}
+                           transition={{ duration: 0.8, ease: "easeOut" }}
+                       >
+                           <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-sm rounded-2xl p-12 border border-gray-700/50 shadow-2xl text-center">
+                               <motion.h2
+                                   className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+                                   initial={{ opacity: 0, y: 20 }}
+                                   animate={{ opacity: 1, y: 0 }}
+                                   transition={{ duration: 0.6, delay: 0.2 }}
+                               >
+                                   Join Our Community
+                               </motion.h2>
+                               <motion.p
+                                   className="text-gray-300 text-xl leading-relaxed mb-10 max-w-3xl mx-auto"
+                                   initial={{ opacity: 0, y: 20 }}
+                                   animate={{ opacity: 1, y: 0 }}
+                                   transition={{ duration: 0.6, delay: 0.4 }}
+                               >
+                                   Connect with fellow BITS students, share knowledge, and grow together in our vibrant community of innovators and learners.
+                               </motion.p>
+                               <motion.div
+                                   className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                                   initial={{ opacity: 0, y: 20 }}
+                                   animate={{ opacity: 1, y: 0 }}
+                                   transition={{ duration: 0.6, delay: 0.6 }}
+                               >
                                    <motion.button
                                        className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg"
-                                       whileHover={{ scale: 1.05 }}
+                                       whileHover={{ scale: 1.05, y: -2 }}
                                        whileTap={{ scale: 0.95 }}
                                    >
                                        Join Free Community →
                                    </motion.button>
+                                   <div className="flex items-center space-x-4 text-gray-400">
+                                       <div className="flex -space-x-2">
+                                           {[1, 2, 3, 4].map(i => (
+                                               <div key={i} className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 border-2 border-gray-800"></div>
+                                           ))}
+                                       </div>
+                                       <span className="text-sm">Join 500+ students</span>
+                                   </div>
                                </motion.div>
                            </div>
                        </motion.section>
@@ -532,35 +572,31 @@ const LandingPage = () => {
                                                        <motion.section
                                 className="mt-16 max-w-6xl mx-auto"
                                 initial={{ opacity: 0, x: -50 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
-                                viewport={{ margin: "-100px" }}
                             >
                               <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.1)">
                                                                    <motion.h2
                                        className="text-3xl font-bold text-white mb-8 text-center"
                                        initial={{ opacity: 0, y: 20 }}
-                                       whileInView={{ opacity: 1, y: 0 }}
+                                       animate={{ opacity: 1, y: 0 }}
                                        transition={{ duration: 0.6, delay: 0.2 }}
-                                       viewport={{ margin: "-100px" }}
                                    >
                                       Contact Us
                                   </motion.h2>
                                                                   <motion.p
                                       className="text-gray-300 text-lg leading-relaxed text-center mb-8"
                                       initial={{ opacity: 0, y: 20 }}
-                                      whileInView={{ opacity: 1, y: 0 }}
+                                      animate={{ opacity: 1, y: 0 }}
                                       transition={{ duration: 0.6, delay: 0.4 }}
-                                      viewport={{ margin: "-100px" }}
                                   >
                                      Get in touch with us and follow our social media for the latest updates and community highlights.
                                  </motion.p>
                                                                   <motion.div
                                       className="flex justify-center space-x-8"
                                       initial={{ opacity: 0, y: 20 }}
-                                      whileInView={{ opacity: 1, y: 0 }}
+                                      animate={{ opacity: 1, y: 0 }}
                                       transition={{ duration: 0.6, delay: 0.6 }}
-                                      viewport={{ margin: "-100px" }}
                                   >
                                     <motion.a
                                         href="https://instagram.com/bridge2bits"
@@ -681,3 +717,4 @@ const App = () => {
 };
 
 export default App;
+ 
