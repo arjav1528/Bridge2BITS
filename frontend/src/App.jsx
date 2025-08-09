@@ -52,7 +52,7 @@ const LandingPage = () => {
           }}
         />
       </div> */}
-             <header className="relative py-4 md:py-6 mx-4 md:mx-8 lg:mx-12 bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-2xl border border-gray-600/30 rounded-3xl mt-6 shadow-2xl">
+             <header className="relative py-4 md:py-6 mx-4 md:mx-8 lg:mx-12 bg-gradient-to-r from-gray-900/95 to-gray-800/95 backdrop-blur-2xl border-2 border-yellow-400/20 rounded-3xl mt-6 shadow-2xl">
            <div className="px-6 mx-auto max-w-7xl sm:px-8 lg:px-12">
                <div className="relative flex items-center justify-between">
                    <div className="flex items-center space-x-8">
@@ -99,7 +99,7 @@ const LandingPage = () => {
                   {/* Mobile menu */}
                   {isMobileMenuOpen && (
                       <motion.div 
-                          className="lg:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-xl border border-gray-600/30 rounded-2xl py-6 mt-4 shadow-2xl"
+                          className="lg:hidden absolute top-full left-0 w-full bg-gray-900/95 backdrop-blur-xl border-2 border-yellow-400/20 rounded-2xl py-6 mt-4 shadow-2xl"
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
@@ -180,7 +180,7 @@ const LandingPage = () => {
                              {activeTab === 'home' ? (
                    <div className="max-w-6xl mx-auto text-center">
                                              <motion.div
-                           className="inline-flex px-6 py-3 mb-12 text-base font-semibold text-gray-900 bg-gradient-to-r from-white/95 to-gray-100/95 backdrop-blur-xl border border-white/20 rounded-full font-pj shadow-2xl relative overflow-hidden"
+                           className="inline-flex px-6 py-3 mb-12 text-base font-semibold text-gray-900 bg-gradient-to-r from-white/95 to-gray-100/95 backdrop-blur-xl border-2 border-yellow-400/20 rounded-full font-pj shadow-2xl relative overflow-hidden"
                            initial={{ opacity: 0, y: -20 }}
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ duration: 0.5 }}
@@ -220,7 +220,7 @@ const LandingPage = () => {
                            </motion.span>
                        </motion.div>
                       
-                       <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.2)">
+                       <SpotlightCard className="custom-spotlight-card border-2 border-yellow-400/20" spotlightColor="rgba(255, 255, 255, 0.2)">
                              <motion.h1
                                  className="text-5xl font-bold leading-tight text-white mb-8 sm:text-6xl sm:leading-tight lg:text-7xl lg:leading-tight font-pj drop-shadow-2xl"
                                  initial={{ opacity: 0, y: 20 }}
@@ -239,7 +239,7 @@ const LandingPage = () => {
                          </SpotlightCard>
                           
                       <motion.p
-                          className="max-w-3xl mx-auto mt-8 text-xl leading-8 text-gray-300 font-inter bg-gradient-to-r from-gray-900/90 to-gray-800/90 backdrop-blur-xl px-8 py-6 rounded-2xl shadow-2xl border border-gray-700/50"
+                          className="max-w-3xl mx-auto mt-8 text-xl leading-8 text-gray-300 font-inter bg-gradient-to-r from-gray-900/90 to-gray-800/90 backdrop-blur-xl px-8 py-6 rounded-2xl shadow-2xl border-2 border-yellow-400/20"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.4 }}
@@ -254,13 +254,14 @@ const LandingPage = () => {
                        {/* About Us Section */}
                        <motion.section
                            className="mt-20 max-w-6xl mx-auto"
-                           initial={{ opacity: 0, y: 50 }}
-                           animate={{ opacity: 1, y: 0 }}
+                           initial={{ opacity: 0, x: -50 }}
+                           whileInView={{ opacity: 1, x: 0 }}
                            transition={{ duration: 0.8, ease: "easeOut" }}
+                           viewport={{ once: true, amount: 0.3 }}
                        >
-                           <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.1)">
+                           <SpotlightCard className="custom-spotlight-card border-2 border-yellow-400/20" spotlightColor="rgba(255, 255, 255, 0.1)">
                                <motion.h2
-                                   className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+                                   className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent"
                                    initial={{ opacity: 0, y: 20 }}
                                    animate={{ opacity: 1, y: 0 }}
                                    transition={{ duration: 0.6, delay: 0.2 }}
@@ -283,18 +284,19 @@ const LandingPage = () => {
                                                {/* Courses Section */}
                                                  <motion.section
                              className="mt-20 max-w-6xl mx-auto"
-                             initial={{ opacity: 0, x: -50 }}
-                             animate={{ opacity: 1, x: 0 }}
+                             initial={{ opacity: 0, x: 50 }}
+                             whileInView={{ opacity: 1, x: 0 }}
                              transition={{ duration: 0.8, ease: "easeOut" }}
+                             viewport={{ once: true, amount: 0.3 }}
                          >
-                             <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-xl rounded-3xl p-10 border border-gray-600/30 shadow-2xl">
+                             <SpotlightCard className="custom-spotlight-card border-2 border-yellow-400/20" spotlightColor="rgba(255, 255, 255, 0.1)">
                                  <motion.h2
-                                     className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+                                     className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent"
                                      initial={{ opacity: 0, y: 20 }}
                                      animate={{ opacity: 1, y: 0 }}
                                      transition={{ duration: 0.6, delay: 0.2 }}
                                  >
-                                     Featured Courses
+                                     Featured Features
                                  </motion.h2>
                                  <motion.p
                                      className="text-gray-300 text-lg text-center mb-12 max-w-3xl mx-auto"
@@ -315,7 +317,7 @@ const LandingPage = () => {
                                    ].map((course, index) => (
                                        <motion.div
                                            key={index}
-                                           className="relative group bg-gray-800/50 rounded-2xl p-8 border border-gray-600/30 hover:border-gray-500/50 transition-all duration-300 hover:scale-105 overflow-hidden"
+                                           className="relative group bg-gray-800/50 rounded-2xl p-8 border-2 border-yellow-400/20 hover:border-yellow-400/30 transition-all duration-300 hover:scale-105 overflow-hidden"
                                            initial={{ opacity: 0, y: 20 }}
                                            animate={{ opacity: 1, y: 0 }}
                                            transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
@@ -331,19 +333,20 @@ const LandingPage = () => {
                                            </div>
                                        </motion.div>
                                    ))}
-                               </div>
-                           </div>
+                                                                  </div>
+                             </SpotlightCard>
                        </motion.section>
 
 
                        {/* Testimonials Section with Infinite Marquee */}
                        <motion.section
                            className="mt-20 w-full overflow-hidden"
-                           initial={{ opacity: 0, y: 50 }}
-                           animate={{ opacity: 1, y: 0 }}
+                           initial={{ opacity: 0, x: -50 }}
+                           whileInView={{ opacity: 1, x: 0 }}
                            transition={{ duration: 0.8, ease: "easeOut" }}
+                           viewport={{ once: true, amount: 0.3 }}
                        >
-                           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+                           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 border-2 border-yellow-400/20 rounded-2xl p-8 bg-gray-900/50 backdrop-blur-sm">
                                <motion.h2
                                    className="text-5xl font-bold mb-6 text-center bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent"
                                    initial={{ opacity: 0, y: 20 }}
@@ -362,26 +365,22 @@ const LandingPage = () => {
                                    Hear from our amazing community of BITS students who are building their future together through collaboration, learning, and innovation.
                                </motion.p>
                            </div>
-
-                           <MarqueeSection />
-
-                           
-
-                           
-
-                           
                        </motion.section>
+
+                       {/* Marquee Section - Moved outside constrained container */}
+                       <MarqueeSection />
 
                        {/* Community Section */}
                        <motion.section
                            className="mt-16 max-w-6xl mx-auto"
-                           initial={{ opacity: 0, y: 50 }}
-                           animate={{ opacity: 1, y: 0 }}
+                           initial={{ opacity: 0, x: 50 }}
+                           whileInView={{ opacity: 1, x: 0 }}
                            transition={{ duration: 0.8, ease: "easeOut" }}
+                           viewport={{ once: true, amount: 0.3 }}
                        >
-                           <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-sm rounded-2xl p-12 border border-gray-700/50 shadow-2xl text-center">
+                           <SpotlightCard className="custom-spotlight-card border-2 border-yellow-400/20" spotlightColor="rgba(255, 255, 255, 0.1)">
                                <motion.h2
-                                   className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+                                   className="text-4xl font-bold mb-6 text-center bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent"
                                    initial={{ opacity: 0, y: 20 }}
                                    animate={{ opacity: 1, y: 0 }}
                                    transition={{ duration: 0.6, delay: 0.2 }}
@@ -418,19 +417,20 @@ const LandingPage = () => {
                                        <span className="text-sm">Join 500+ students</span>
                                    </div>
                                </motion.div>
-                           </div>
+                             </SpotlightCard>
                        </motion.section>
 
                                                                                                                                                                                                                                                                                                                                                                                                {/* Contact Us Section */}
                                                        <motion.section
                                 className="mt-16 max-w-6xl mx-auto"
                                 initial={{ opacity: 0, x: -50 }}
-                                animate={{ opacity: 1, x: 0 }}
+                                whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
+                                viewport={{ once: true, amount: 0.3 }}
                             >
-                              <SpotlightCard className="custom-spotlight-card" spotlightColor="rgba(255, 255, 255, 0.1)">
+                              <SpotlightCard className="custom-spotlight-card border-2 border-yellow-400/20" spotlightColor="rgba(255, 255, 255, 0.1)">
                                                                    <motion.h2
-                                       className="text-3xl font-bold text-white mb-8 text-center"
+                                       className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent"
                                        initial={{ opacity: 0, y: 20 }}
                                        animate={{ opacity: 1, y: 0 }}
                                        transition={{ duration: 0.6, delay: 0.2 }}

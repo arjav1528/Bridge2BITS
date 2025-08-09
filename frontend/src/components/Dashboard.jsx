@@ -82,10 +82,10 @@ const Dashboard = () => {
                   
                   {/* Mobile menu */}
                   {isMobileMenuOpen && (
-                      <div className="lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm border-b border-gray-200 py-4">
+                      <div className="lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm border-b border-gray-600/30 py-4">
                           <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                               <TabBar activeTab={activeTab} setActiveTab={setActiveTab} tabs={tabs} onClose={() => setIsMobileMenuOpen(false)} />
-                              <div className="flex flex-col items-center space-y-4 mt-4 pt-4 border-t border-gray-700">
+                              <div className="flex flex-col items-center space-y-4 mt-4 pt-4 border-t border-gray-600/30">
                                   {user?.profilePicture && (
                                       <motion.img
                                           src={user.profilePicture}
@@ -197,7 +197,7 @@ const Dashboard = () => {
               {activeTab === 'home' ? (
                   <div className="max-w-3xl mx-auto text-center">
                       <motion.div
-                          className="inline-flex px-4 py-2 mb-10 text-base font-semibold text-gray-900 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full font-pj shadow-lg"
+                          className="inline-flex px-4 py-2 mb-10 text-base font-semibold text-gray-900 bg-white/90 backdrop-blur-sm border border-gray-100/30 rounded-full font-pj shadow-lg"
                           initial={{ opacity: 0, y: -20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5 }}
@@ -217,7 +217,7 @@ const Dashboard = () => {
                       </SpotlightCard>
                           
                       <motion.p
-                          className="max-w-xl mx-auto mt-6 text-lg leading-7 text-gray-200 font-inter bg-gray-800/80 backdrop-blur-sm px-4 py-3 rounded-lg shadow-lg"
+                          className="max-w-xl mx-auto mt-6 text-lg leading-7 text-gray-200 font-inter bg-gray-800/40 backdrop-blur-sm px-4 py-3 rounded-lg shadow-lg border border-gray-600/20"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: 0.2 }}
