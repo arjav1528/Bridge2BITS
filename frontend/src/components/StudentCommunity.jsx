@@ -40,7 +40,7 @@ const StudentCommunity = () => {
   if (error) {
     return (
       <div className="text-center py-8">
-        <p className="text-red-400">{error}</p>
+        <p className="text-yellow-400">{error}</p>
         <button
           onClick={() => window.location.reload()}
           className="mt-4 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors"

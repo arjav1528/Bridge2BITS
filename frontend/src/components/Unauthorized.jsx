@@ -18,7 +18,7 @@ const Unauthorized = () => {
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
         <div className="mb-6">
           <svg
-            className="mx-auto h-16 w-16 text-red-500"
+            className="mx-auto h-16 w-16 text-yellow-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ const Unauthorized = () => {
         <div className="space-y-3">
           <button
             onClick={() => navigate('/')}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
+            className="w-full bg-yellow-600 text-black py-2 px-4 rounded-md hover:bg-yellow-700 transition-colors"
           >
             Go Back Home
           </button>

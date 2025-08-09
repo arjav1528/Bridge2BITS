@@ -73,7 +73,7 @@ const LandingPage = () => {
                              alt="Bridge2BITS Logo" 
                              className="h-14 w-auto mr-3 drop-shadow-lg"
                            />
-                           <p className="text-2xl font-bold text-white transition-all duration-300 rounded font-pj group-hover:text-blue-300 drop-shadow-lg"> Bridge2BITS </p>
+                           <p className="text-2xl font-bold text-white transition-all duration-300 rounded font-pj group-hover:text-yellow-300 drop-shadow-lg"> Bridge2BITS </p>
                          </motion.div>
                        </motion.button>
                      </div>
@@ -123,21 +123,21 @@ const LandingPage = () => {
                                px-8 py-4 text-lg
                                font-semibold
                                leading-7
-                               text-white
+                               text-black
                                transition-all
                                duration-300
-                               bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600
+                               bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-600
                                border-0
                                rounded-2xl
                                font-pj
                                shadow-lg hover:shadow-2xl
-                               focus-ring focus:ring-blue-500/50
-                               hover:from-blue-700 hover:via-purple-700 hover:to-pink-700
-                               hover:shadow-blue-500/25
+                               focus-ring focus:ring-yellow-500/50
+                               hover:from-yellow-600 hover:via-yellow-500 hover:to-yellow-700
+                               hover:shadow-yellow-500/25
                                relative overflow-hidden group
                            "
                        >
-                           <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+                           <span className="absolute inset-0 bg-gradient-to-r from-transparent via-black/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
                            <span className="relative flex items-center">
                                <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                                    <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -231,7 +231,7 @@ const LandingPage = () => {
                                  }}
                              >
                                  <motion.span
-                                     className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+                                      className="bg-gradient-to-r from-white via-yellow-200 to-yellow-300 bg-clip-text text-transparent"
                                  >
                                      Quality resources shared by the community
                                  </motion.span>
@@ -343,18 +343,18 @@ const LandingPage = () => {
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ duration: 0.8, ease: "easeOut" }}
                        >
-                           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
                                <motion.h2
-                                   className="text-5xl font-bold mb-6 text-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+                                   className="text-5xl font-bold mb-6 text-center bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent"
                                    initial={{ opacity: 0, y: 20 }}
                                    animate={{ opacity: 1, y: 0 }}
                                    transition={{ duration: 0.6, delay: 0.2 }}
                                >
                                    What Our Community Says
                                </motion.h2>
-                               
+                                
                                <motion.p
-                                   className="text-gray-300 text-xl text-center mb-16 max-w-4xl mx-auto leading-relaxed"
+                                   className="text-gray-300 text-xl text-center max-w-4xl mx-auto leading-relaxed"
                                    initial={{ opacity: 0, y: 20 }}
                                    animate={{ opacity: 1, y: 0 }}
                                    transition={{ duration: 0.6, delay: 0.4 }}
@@ -363,23 +363,13 @@ const LandingPage = () => {
                                </motion.p>
                            </div>
 
+                           <MarqueeSection />
+
                            
 
-                           {/* CTA Section */}
-                           <motion.div
-                               className="text-center mt-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
-                               initial={{ opacity: 0, y: 30 }}
-                               animate={{ opacity: 1, y: 0 }}
-                               transition={{ duration: 0.8, delay: 1.2 }}
-                           >
-                               <motion.button
-                                   className="px-10 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-2xl font-semibold text-lg hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 transition-all duration-300 shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105"
-                                   whileHover={{ scale: 1.05, y: -2 }}
-                                   whileTap={{ scale: 0.95 }}
-                               >
-                                   Join Our Success Stories →
-                               </motion.button>
-                           </motion.div>
+                           
+
+                           
                        </motion.section>
 
                        {/* Community Section */}

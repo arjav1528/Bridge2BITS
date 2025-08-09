@@ -246,7 +246,7 @@ const Dashboard = () => {
           href="https://github.com/arjav1528"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
+          className="text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -257,7 +257,7 @@ const Dashboard = () => {
           href="https://github.com/Utkarsharma7"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-400 hover:text-blue-300 transition-colors duration-200"
+          className="text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

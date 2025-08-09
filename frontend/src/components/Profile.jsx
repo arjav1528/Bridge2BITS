@@ -239,8 +239,8 @@ const Profile = () => {
               <motion.div
                 className={`mb-6 p-4 rounded-lg ${
                   message.includes('successfully') 
-                    ? 'bg-green-600/20 border border-green-500 text-green-300' 
-                    : 'bg-red-600/20 border border-red-500 text-red-300'
+                    ? 'bg-yellow-600/20 border border-yellow-500 text-yellow-300' 
+                    : 'bg-gray-600/20 border border-gray-500 text-gray-300'
                 }`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -262,7 +262,7 @@ const Profile = () => {
                     value={formData.bio}
                     onChange={handleInputChange}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50"
                     rows="3"
                     placeholder="Tell us about yourself..."
                   />
@@ -276,7 +276,7 @@ const Profile = () => {
                     value={formData.interests.join(', ')}
                     onChange={handleInterestsChange}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50"
                     placeholder="e.g., Programming, AI, Web Development"
                   />
                 </div>
@@ -289,7 +289,7 @@ const Profile = () => {
                     value={formData.phoneNumber}
                     onChange={handleInputChange}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50"
                     placeholder="Your phone number"
                   />
                 </div>
@@ -302,7 +302,7 @@ const Profile = () => {
                     value={formData.city}
                     onChange={handleInputChange}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50"
                     placeholder="Your city"
                   />
                 </div>
@@ -320,7 +320,7 @@ const Profile = () => {
                     value={formData.branch}
                     onChange={handleInputChange}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50"
                     placeholder="e.g., Computer Science"
                   />
                 </div>
@@ -332,7 +332,7 @@ const Profile = () => {
                     value={formData.year}
                     onChange={handleInputChange}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50"
                   >
                     <option value="">Select Year</option>
                     <option value="1st Year">1st Year</option>
@@ -349,7 +349,7 @@ const Profile = () => {
                     value={formData.campus}
                     onChange={handleInputChange}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50"
                   >
                     <option value="Goa">Goa</option>
                     <option value="Pilani">Pilani</option>
@@ -365,7 +365,7 @@ const Profile = () => {
                     value={formData.studentId}
                     onChange={handleInputChange}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50"
                     placeholder="Your student ID"
                   />
                 </div>
@@ -384,7 +384,7 @@ const Profile = () => {
                     value={formData.linkedinProfile}
                     onChange={handleInputChange}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50"
                     placeholder="https://linkedin.com/in/yourprofile"
                   />
                 </div>
@@ -397,7 +397,7 @@ const Profile = () => {
                     value={formData.githubProfile}
                     onChange={handleInputChange}
                     disabled={!isEditing}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50"
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent disabled:opacity-50"
                     placeholder="https://github.com/yourusername"
                   />
                 </div>
@@ -419,7 +419,7 @@ const Profile = () => {
                  {!isEditing ? (
                    <motion.button
                      onClick={() => setIsEditing(true)}
-                     className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                     className="px-6 py-3 bg-yellow-600 text-white rounded-lg font-semibold hover:bg-yellow-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-gray-900"
                      whileHover={{ scale: 1.05 }}
                      whileTap={{ scale: 0.95 }}
                    >
@@ -438,7 +438,7 @@ const Profile = () => {
                      </motion.button>
                      <motion.button
                        onClick={handleSave}
-                       className="px-6 py-3 bg-green-600 text-white rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50"
+                       className="px-6 py-3 bg-yellow-600 text-black rounded-lg font-semibold hover:bg-yellow-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-gray-900 disabled:opacity-50"
                        whileHover={{ scale: 1.05 }}
                        whileTap={{ scale: 0.95 }}
                        disabled={isLoading}

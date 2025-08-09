@@ -66,48 +66,36 @@ const testimonials = [
 
 
 export const MarqueeSection = () => (
-    <div className="mt-16 mb-8 relative">
-        {/* Section Title */}
-        <motion.div 
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-        >
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">
-                What Our Community Says
-            </h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                Hear from fellow BITS students who've transformed their tech journey with us
-            </p>
-        </motion.div>
-        
+    <div className="w-full relative">
         {/* Marquee Container with Dark Theme */}
-        <div className="marquee-full-width">
-            <div className="marquee-fade-overlay marquee-fade-left"></div>
-            <div className="marquee-fade-overlay marquee-fade-right"></div>
-            
+        <div className="w-full overflow-hidden">
             <Marquee
                 speed={40}
-                gradient={false}
+                gradient={true}
+                gradientColor="black"    
                 pauseOnHover={true}
                 direction="left"
                 className="py-8 bg-transparent flex items-center space-x-6 overflow-hidden"
             >
                 {testimonials.map(({ id, pfpUrl, name, text, college }) => (
-                    <div key={id} className="flex items-start space-x-4 mx-4 p-6 bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-700/50 min-w-80 max-w-96 hover:shadow-blue-500/20 hover:border-blue-500/30 transition-all duration-300 hover:scale-105">
-                        <img 
-                            src={pfpUrl} 
-                            alt={`${name}'s profile`} 
-                            className="w-14 h-14 rounded-full object-cover flex-shrink-0 ring-2 ring-blue-500/30 shadow-lg" 
-                        />
-                        <div className="flex flex-col space-y-3">
-                            <p className="text-gray-300 text-base leading-relaxed font-medium">
-                                "{text}"
-                            </p>
-                            <p className="font-bold text-white text-base">{name}</p>
-                            <p className="text-blue-400 text-sm font-medium bg-blue-500/10 px-3 py-1 rounded-full inline-block">
-                                {college}
+                    <div key={id} className="flex flex-col mx-4 p-6 bg-gray-900 rounded-2xl shadow-lg border-2 border-yellow-400 w-80 h-64 hover:shadow-xl hover:shadow-yellow-400/20 transition-all duration-300 hover:scale-105">
+                        {/* Header with profile image and name */}
+                        <div className="flex items-center space-x-3 mb-4">
+                            <img 
+                                src={pfpUrl} 
+                                alt={`${name}'s profile`} 
+                                className="w-12 h-12 rounded-full object-cover flex-shrink-0 shadow-md" 
+                            />
+                            <div className="flex flex-col">
+                                <p className="font-bold text-white text-base">{name}</p>
+                                <p className="text-gray-300 text-sm">{college}</p>
+                            </div>
+                        </div>
+                        
+                        {/* Testimonial text */}
+                        <div className="flex-1 flex items-start">
+                            <p className="text-gray-300 text-sm leading-relaxed line-clamp-4">
+                                {text}
                             </p>
                         </div>
                     </div>
